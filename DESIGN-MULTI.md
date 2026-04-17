@@ -2,7 +2,7 @@
 
 ## What this document adds
 
-`DESIGN.md` specifies the per-agent architecture, a single mind with utility-gated encoding, impressions, trauma, and obsessions. This document covers what changes when multiple agents share an obsess installation: the relationships between them, how memory flows (or doesn't) across them, and the primitives for pooled memory that no individual agent owns.
+`DESIGN.md` specifies the per-agent architecture, a single agent with utility-gated encoding, impressions, trauma, and obsessions. This document covers what changes when multiple agents share an obsess installation: the relationships between them, how memory flows (or doesn't) across them, and the primitives for pooled memory that no individual agent owns.
 
 The per-agent architecture in `DESIGN.md` is unchanged. Everything here sits on top.
 

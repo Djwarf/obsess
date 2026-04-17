@@ -21,7 +21,7 @@ Three meta-components:
 
 ## Why meta-components are not obsess agents
 
-An obsess agent is defined by its specificity: a bounded frame, utility-gated attention, frame-shifted re-synthesis at retrieval, trauma as protection against a self-narrative that rewrites the past. Those properties are load-bearing for what Tier-1 agents are *for*: modeling a specific mind.
+An obsess agent is defined by its specificity: a bounded frame, utility-gated attention, frame-shifted re-synthesis at retrieval, trauma as protection against a self-narrative that rewrites the past. Those properties are load-bearing for what Tier-1 agents are *for*: representing a bounded-attention agent with a coherent point of view.
 
 Meta-components have none of those constraints.
 

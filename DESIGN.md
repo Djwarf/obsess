@@ -1,16 +1,14 @@
-# obsess, a memory system modeled on a specific mind
+# obsess, per-agent memory architecture
 
 ## Why this exists
 
-Standard AI memory (RAG, vector DB) embeds everything and sorts later. It has no model of what should have been ignored at the gate, no model of what a memory *means* to the person who owns it, and no model of failure as a separate encoding class. This project is a deliberate departure: we design memory by modeling it on the owner of the system, not on "general human memory" or on what's easy to implement with a vector store.
+Standard AI memory (RAG, vector DB) embeds everything and sorts later. It has no model of what should have been ignored at the gate, no model of what a memory *means* in context, and no model of failure as a separate encoding class. This project is a deliberate departure. It encodes a specific cognitive model of memory, one with properties a generic vector store cannot express. The architecture below encodes those properties directly.
 
-The owner has described their own memory with the following properties. The architecture below encodes those properties directly.
+## Properties of the memory model
 
-## Observed properties of the owner's memory
+1. **Utility-gated encoding.** Information only fully stores if it serves an active expertise or obsession. Irrelevant content (names, news, pop culture in contexts where none of those match an obsession) is filtered at the gate, never encoded. Content aligned with an active obsession is encoded richly.
 
-1. **Utility-gated encoding.** Information only fully stores if it serves an active expertise or obsession. Names, news, pop culture, filtered at the gate, never encoded. Physics, math, domains of mastery, encoded richly.
-
-2. **Compression at encode, regeneration at retrieve.** What persists is a summary, not the original text. On recall, the memory is re-synthesized *through the owner's current frame*, not played back verbatim. Fidelity is to the current understanding, not to the source.
+2. **Compression at encode, regeneration at retrieve.** What persists is a summary, not the original text. On recall, the memory is re-synthesized *through the agent's current frame*, not played back verbatim. Fidelity is to the current understanding, not to the source.
 
 3. **Two pathways:**
    - **Regular** memory is reconstructive (property 2).
@@ -23,7 +21,7 @@ The owner has described their own memory with the following properties. The arch
 
 6. **Six obsession-seed pathways:** trauma, curiosity, need-for-success, deliberate study, being-best-in-the-world, and **provision / burden-of-care** (responsibility for people who depend on you). Each leaves distinct metadata on the obsession.
 
-7. **Provision is identity-level.** Unlike the other five (each domain-specific), provision is always-on and acts as a *global priority modulator*. It raises the commitment level on any obsession that is instrumentally useful for supporting the people the owner is responsible for. It also makes any trauma linked to provision unsilenceable, the stakes do not let it fade.
+7. **Provision is identity-level.** Unlike the other five (each domain-specific), provision is always-on and acts as a *global priority modulator*. It raises the commitment level on any obsession that is instrumentally useful for supporting the agent's dependents. It also makes any trauma linked to provision unsilenceable, the stakes do not let it fade.
 
 ## Architecture
 
