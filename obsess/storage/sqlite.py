@@ -18,7 +18,7 @@ class SQLiteStorage:
       loading all() of a collection; adequate at prototype scale.
 
     Schema is created on construction if the tables don't exist. No migration
-    layer in v1 — the schema is stable and forward-only."""
+    layer in v1, the schema is stable and forward-only."""
 
     def __init__(self, path: str):
         self._path = path

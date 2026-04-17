@@ -10,7 +10,7 @@ class LlamaCppProvider:
     """llama-cpp-python backend (local GGUF models).
 
     Uses create_chat_completion so the GGUF's baked-in chat template is applied
-    correctly — works with any instruction-tuned GGUF (Qwen3, Gemma, Llama,
+    correctly, works with any instruction-tuned GGUF (Qwen3, Gemma, Llama,
     Mistral, etc.). JSON-schema output is enforced via GBNF grammar derived
     from the schema (LlamaGrammar.from_json_schema)."""
 

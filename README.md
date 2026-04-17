@@ -45,7 +45,7 @@ from obsess.types import SeedType
 pop = Population.new()                    # in-memory; swap storage with SQLiteStorage(path)
 agent = pop.spawn("assistant")
 
-# What this agent cares about — the encoding gate
+# What this agent cares about, the encoding gate
 agent.seed_obsession(
     domain="code_quality",
     description="write clean readable tested code",
@@ -53,11 +53,11 @@ agent.seed_obsession(
     commitment=0.8,
 )
 
-# Ingest — only gate-clearing content is encoded
+# Ingest, only gate-clearing content is encoded
 agent.ingest("I just fixed a null check in the auth handler.")    # stored
 agent.ingest("Taylor Swift released a new album today.")          # dropped
 
-# Retrieve — synthesized through the current frame
+# Retrieve, synthesized through the current frame
 result = agent.query("What do I know about the auth handler?")
 print(result.answer)
 ```
@@ -73,7 +73,7 @@ See [`examples/`](examples/) for multi-agent scenarios, pools, persistence, and 
 | Everything embeds, sorts at retrieval | Gate at encode: most content is *not* stored |
 | Chunks are stored verbatim | Impressions are compressed through the current frame |
 | Retrieval is playback | Retrieval is regeneration through the *current* frame |
-| Failure is just more text | Trauma is a separate encoding class — verbatim, self-surfacing, immune to narrative rewriting |
+| Failure is just more text | Trauma is a separate encoding class, verbatim, self-surfacing, immune to narrative rewriting |
 | Multi-agent = shared store, everyone reads | Multi-agent = typed relationships, sharing rules per kind, non-transitive |
 | Memory is static | Relationship topology shapes what flows across agents |
 
@@ -94,7 +94,7 @@ llm = ProviderSemantics(LlamaCppProvider("/path/to/model.gguf"))
 from obsess.providers import AnthropicProvider
 llm = ProviderSemantics(AnthropicProvider(model="claude-sonnet-4-6"))
 
-# OpenAI — and DeepSeek, Mistral, Groq, Together, xAI, Fireworks via the same class
+# OpenAI, and DeepSeek, Mistral, Groq, Together, xAI, Fireworks via the same class
 from obsess.providers import OpenAICompatibleProvider
 llm = ProviderSemantics(OpenAICompatibleProvider(
     model="deepseek-chat",
@@ -176,7 +176,7 @@ master.record_failure(
     linked_obsession_id=code_quality.id,
 )
 
-# Prodigy encounters similar context — master's warning fires, rendered through
+# Prodigy encounters similar context, master's warning fires, rendered through
 # prodigy's current frame
 r = prodigy.ingest("About to review a PR for null safety.")
 for surfaced in r.trauma_warnings:
@@ -185,10 +185,10 @@ for surfaced in r.trauma_warnings:
 
 Four relationship kinds:
 
-- `TEAM` — pool formation, warning-share both directions.
-- `PEER` — visibility-granting, no-share by default.
-- `PARENT_CHILD` — directional, non-decaying, obsessions inherit attenuated.
-- `MASTER_PRODIGY` — directional, decaying, prodigy bootstraps to master's level.
+- `TEAM`, pool formation, warning-share both directions.
+- `PEER`, visibility-granting, no-share by default.
+- `PARENT_CHILD`, directional, non-decaying, obsessions inherit attenuated.
+- `MASTER_PRODIGY`, directional, decaying, prodigy bootstraps to master's level.
 
 See [`DESIGN-MULTI.md`](DESIGN-MULTI.md) for the full relationship model.
 
@@ -196,7 +196,7 @@ See [`DESIGN-MULTI.md`](DESIGN-MULTI.md) for the full relationship model.
 
 ## Integrating with agent frameworks
 
-obsess is framework-neutral — it provides memory state; your framework provides the reasoning loop. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) for patterns with LangChain, the Claude Agent SDK, and raw tool-loop agents.
+obsess is framework-neutral, it provides memory state; your framework provides the reasoning loop. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) for patterns with LangChain, the Claude Agent SDK, and raw tool-loop agents.
 
 The core pattern is a sandwich around each LLM call:
 
@@ -214,7 +214,7 @@ prompt = (
 # Your framework's call
 response = my_framework.chat(prompt)
 
-# After — flag failures explicitly if you detect one
+# After, flag failures explicitly if you detect one
 if detected_failure:
     agent.record_failure(context=..., failure=..., ...)
 ```
@@ -223,11 +223,11 @@ if detected_failure:
 
 ## Documentation
 
-- [`DESIGN.md`](DESIGN.md) — per-agent memory architecture (utility gate, impressions, trauma, obsessions).
-- [`DESIGN-MULTI.md`](DESIGN-MULTI.md) — multi-agent model: ownership modes, relationship kinds, pools, propagation, render layer.
-- [`DESIGN-META.md`](DESIGN-META.md) — meta-layer: Creator, Evolution selection, Bonding.
-- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) — plugging obsess into common agent frameworks.
-- [`examples/`](examples/) — runnable scenarios.
+- [`DESIGN.md`](DESIGN.md), per-agent memory architecture (utility gate, impressions, trauma, obsessions).
+- [`DESIGN-MULTI.md`](DESIGN-MULTI.md), multi-agent model: ownership modes, relationship kinds, pools, propagation, render layer.
+- [`DESIGN-META.md`](DESIGN-META.md), meta-layer: Creator, Evolution selection, Bonding.
+- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md), plugging obsess into common agent frameworks.
+- [`examples/`](examples/), runnable scenarios.
 
 ---
 

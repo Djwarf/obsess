@@ -35,7 +35,7 @@ class ObsessionSpec:
     """A proposed obsession for a new agent. Either a private seed (domain +
     description, stored in the agent's ObsessionRegistry) or an activation
     against an existing shared definition (shared_definition_id set; domain
-    and description can be left empty — they're read from the definition)."""
+    and description can be left empty, they're read from the definition)."""
 
     domain: str = ""
     description: str = ""
@@ -65,14 +65,14 @@ class CreatorResult:
 
 class Creator:
     """System component that produces new agents. All-knowing (no bounded
-    attention) and has no memory of its own — every decision queries
+    attention) and has no memory of its own, every decision queries
     Evolution's store.
 
     Before each spawn, Creator checks the failure-registry view: past agents
     whose obsession domains overlap with the proposed config AND who accumulated
     failure_recorded events. The response to a hit is governed by CreatorPolicy.
 
-    Creator itself is exogenous — configured by the system builder at
+    Creator itself is exogenous, configured by the system builder at
     Population construction. No Creator-on-Creator lineage in v1."""
 
     def __init__(

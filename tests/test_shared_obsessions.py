@@ -34,7 +34,7 @@ class SharedObsessionContract(unittest.TestCase):
             commitment=0.3,
         )
 
-        # Same definition — identity is shared
+        # Same definition, identity is shared
         self.assertIs(a_ob.definition, b_ob.definition)
         self.assertEqual(a_ob.id, b_ob.id)
         self.assertEqual(a_ob.domain, "physics")

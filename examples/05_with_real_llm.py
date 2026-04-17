@@ -3,7 +3,7 @@
 Shows:
 - Wiring a Provider (Anthropic, OpenAI-compatible, Gemini, local GGUF, Ollama)
   into the semantic layer via ProviderSemantics.
-- Same obsess code regardless of provider — swap the Provider instance, the
+- Same obsess code regardless of provider, swap the Provider instance, the
   rest of the pipeline is identical.
 
 Provider selection is picked via the OBSESS_PROVIDER environment variable,

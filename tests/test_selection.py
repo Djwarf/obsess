@@ -40,7 +40,7 @@ class SelectionContract(unittest.TestCase):
         self.assertEqual(retired_events[0].payload["failure_count"], 2)
         self.assertEqual(retired_events[0].payload["threshold"], 2)
 
-        # Agent's internal state is unchanged — retirement is advisory
+        # Agent's internal state is unchanged, retirement is advisory
         self.assertIsNotNone(pop.get_agent("a"))
         self.assertEqual(len(result.agent.obsessions.all()), 1)
 
@@ -81,7 +81,7 @@ class SelectionContract(unittest.TestCase):
         self.assertEqual(len(pop.evolution.query(kind="config_promoted")), 1)
 
     def test_failed_agent_not_promoted(self):
-        pop = Population.new(retire_threshold=5)  # high threshold — not retired
+        pop = Population.new(retire_threshold=5)  # high threshold, not retired
         result = pop.creator.propose("a", [_spec("teaching")])
         ob = result.agent.obsessions.all()[0]
         result.agent.record_failure(

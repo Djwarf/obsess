@@ -59,7 +59,7 @@ class CreatorContract(unittest.TestCase):
             linked_obsession_id=a_result.agent.obsessions.all()[0].id,
         )
 
-        # b's config overlaps on "teaching" — should see a as a warning
+        # b's config overlaps on "teaching", should see a as a warning
         b_result = pop.creator.propose("b", [a_spec])
         self.assertEqual(len(b_result.warnings), 1)
         hit = b_result.warnings[0]

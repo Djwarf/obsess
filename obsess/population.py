@@ -122,7 +122,7 @@ class Population:
 
     def rehydrate_agent(self, agent_id: str, llm: Optional[LLM] = None) -> Memory:
         """Reconstruct a Memory for an agent whose state lives in storage
-        (from a prior session). Does NOT emit a spawn event — rehydration
+        (from a prior session). Does NOT emit a spawn event, rehydration
         is a runtime restoration, not a birth."""
         if agent_id in self._agents:
             return self._agents[agent_id]

@@ -10,7 +10,7 @@ from obsess.llm import ProviderSemantics
 class FakeProvider:
     """Returns canned responses. Records the last (system, user, schema) tuple
     so tests can assert what the Semantics layer sent down. Tests that prompts
-    and parsing route correctly — independent of any real LLM SDK."""
+    and parsing route correctly, independent of any real LLM SDK."""
 
     def __init__(self, canned: dict | str = ""):
         self.canned = canned
@@ -42,7 +42,7 @@ class FakeProvider:
 class ProviderSemanticsContract(unittest.TestCase):
     """Semantics routes correctly regardless of backend: right prompts sent,
     right schemas requested, right outputs parsed. Provider swap is purely
-    mechanical — no prompt or parsing code changes."""
+    mechanical, no prompt or parsing code changes."""
 
     def test_score_relevance_parses_float(self):
         p = FakeProvider({"score": 0.73})

@@ -17,7 +17,7 @@ from obsess.types import SeedType
 def main() -> None:
     pop = Population.new()
 
-    # A shared obsession identity — both agents will activate against it.
+    # A shared obsession identity, both agents will activate against it.
     code_quality = pop.shared_obsessions.define(
         domain="code_quality",
         description="write clean readable tested code without null pointer bugs",
@@ -30,7 +30,7 @@ def main() -> None:
         commitment=0.9,
     )]).agent
 
-    # Prodigy is spawned fresh — no obsessions yet.
+    # Prodigy is spawned fresh, no obsessions yet.
     prodigy = pop.spawn("prodigy")
     assert prodigy.obsessions.get(code_quality.id) is None
 

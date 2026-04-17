@@ -57,7 +57,7 @@ class StorageBackendContract(unittest.TestCase):
 class SqlitePersistenceAcrossSessions(unittest.TestCase):
     """The real proof: a Population built on SQLite storage, populated with
     agents/obsessions/traumas/relationships/pools, closed, reopened, and
-    rehydrated — state survives. Agent behavior continues where it left off."""
+    rehydrated, state survives. Agent behavior continues where it left off."""
 
     def test_end_to_end_roundtrip(self):
         with tempfile.TemporaryDirectory() as td:
@@ -155,7 +155,7 @@ class SqlitePersistenceAcrossSessions(unittest.TestCase):
             recorded = set(pop2.agent_ids_on_record())
             self.assertEqual(recorded, {"a", "b", "c", "d"})
 
-            # Rehydrate agents — no new spawn events fire
+            # Rehydrate agents, no new spawn events fire
             spawns_before = len(pop2.evolution.query(kind="spawn"))
             a_rehydrated = pop2.rehydrate_agent("a")
             b_rehydrated = pop2.rehydrate_agent("b")
@@ -170,7 +170,7 @@ class SqlitePersistenceAcrossSessions(unittest.TestCase):
 
             b_obs = b_rehydrated.obsessions.all()
             # b has the shared activation (commitment 0.7) AND the inherited
-            # bootstrapped copy from parent/child formation — but because
+            # bootstrapped copy from parent/child formation, but because
             # activation happened BEFORE the relationship, no extra is added:
             # propagation skips defs that already have an activation on target.
             self.assertEqual(len(b_obs), 1)
@@ -181,7 +181,7 @@ class SqlitePersistenceAcrossSessions(unittest.TestCase):
             inherited = [st for st in r.trauma_warnings if st.trauma.id == trauma_id]
             self.assertEqual(len(inherited), 1)
 
-            # Retirement state survived — selection's retirement events
+            # Retirement state survived, selection's retirement events
             # hydrate retired_ids in pop2. Add a failure that crosses threshold.
             a_ob = a_rehydrated.obsessions.all()[0]
             a_rehydrated.record_failure(

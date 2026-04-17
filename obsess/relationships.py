@@ -23,7 +23,7 @@ class SharingMode(str, Enum):
     WARNING = flagged, surfaces with origin tag, no commitment accrual;
     FULL = treated as the receiver's own, render re-synthesized through
     receiver's frame for trauma, commitment accrual for obsessions.
-    Impressions are never shared — no SharingMode applies to them."""
+    Impressions are never shared, no SharingMode applies to them."""
 
     NONE = "none"
     WARNING = "warning"
@@ -74,7 +74,7 @@ KIND_META: dict[RelationshipKind, KindMeta] = {
     ),
     # Parent/child: structural, non-decaying. Obsessions flow downward (full);
     # child's novel obsessions dissolve at teardown (no upward obsession flow).
-    # Trauma flows down FULL, up WARNING — the child's scars teach the parent.
+    # Trauma flows down FULL, up WARNING, the child's scars teach the parent.
     RelationshipKind.PARENT_CHILD: KindMeta(
         symmetric=False,
         decays=False,
@@ -142,7 +142,7 @@ _RELATIONSHIPS_COLLECTION = "relationships"
 class RelationshipGraph:
     """Operational store for the relationship graph. Source of truth for
     who-is-related-to-whom. Evolution observes formation events on mutation.
-    Queries are flat — per DESIGN-MULTI.md sharing is explicitly non-transitive,
+    Queries are flat, per DESIGN-MULTI.md sharing is explicitly non-transitive,
     so no transitive closure is needed.
 
     Storage-backed. Hydrates on construction."""

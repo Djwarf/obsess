@@ -31,7 +31,7 @@ dependencies = [
 # HashEmbedder works with no deps for tests and prototyping.
 embeddings = ["sentence-transformers>=2.7", "einops>=0.7"]
 
-# LLM providers — install only the ones you use.
+# LLM providers, install only the ones you use.
 llamacpp = ["llama-cpp-python>=0.3.0"]
 ollama = ["ollama>=0.3.0"]
 anthropic = ["anthropic>=0.40"]

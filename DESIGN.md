@@ -1,4 +1,4 @@
-# obsess — a memory system modeled on a specific mind
+# obsess, a memory system modeled on a specific mind
 
 ## Why this exists
 
@@ -8,30 +8,30 @@ The owner has described their own memory with the following properties. The arch
 
 ## Observed properties of the owner's memory
 
-1. **Utility-gated encoding.** Information only fully stores if it serves an active expertise or obsession. Names, news, pop culture — filtered at the gate, never encoded. Physics, math, domains of mastery — encoded richly.
+1. **Utility-gated encoding.** Information only fully stores if it serves an active expertise or obsession. Names, news, pop culture, filtered at the gate, never encoded. Physics, math, domains of mastery, encoded richly.
 
 2. **Compression at encode, regeneration at retrieve.** What persists is a summary, not the original text. On recall, the memory is re-synthesized *through the owner's current frame*, not played back verbatim. Fidelity is to the current understanding, not to the source.
 
 3. **Two pathways:**
    - **Regular** memory is reconstructive (property 2).
-   - **Trauma** memory is verbatim, self-surfacing. It is not emotionally negative by definition — it is failure-linked. The trigger to encode a trauma is `surprise × cost × unsolvability-at-time`. Trauma surfaces itself when the current context pattern-matches the past failure.
-   - The trauma *record* is always immutable (append-only). For the origin agent, the record reads verbatim — immunity to current-frame narrative rewriting is the point. In multi-agent contexts, inheritors of a shared trauma re-synthesize the record through their own frame at firing time; see DESIGN-MULTI.md for the render-layer split.
+   - **Trauma** memory is verbatim, self-surfacing. It is not emotionally negative by definition, it is failure-linked. The trigger to encode a trauma is `surprise × cost × unsolvability-at-time`. Trauma surfaces itself when the current context pattern-matches the past failure.
+   - The trauma *record* is always immutable (append-only). For the origin agent, the record reads verbatim, immunity to current-frame narrative rewriting is the point. In multi-agent contexts, inheritors of a shared trauma re-synthesize the record through their own frame at firing time; see DESIGN-MULTI.md for the render-layer split.
 
-4. **Trauma keeps firing after resolution.** Solving a trauma does not silence it — the warning keeps firing, but now carries the resolution context (which tradeoff was taken, what it cost). Most problems are not solvable perfectly; the residual uncertainty is preserved.
+4. **Trauma keeps firing after resolution.** Solving a trauma does not silence it, the warning keeps firing, but now carries the resolution context (which tradeoff was taken, what it cost). Most problems are not solvable perfectly; the residual uncertainty is preserved.
 
 5. **Trauma → obsession.** Unsolved trauma seeds obsession. Obsession is the encoding gate. So failure-to-close drives what future knowledge forms. Feedback loop.
 
 6. **Six obsession-seed pathways:** trauma, curiosity, need-for-success, deliberate study, being-best-in-the-world, and **provision / burden-of-care** (responsibility for people who depend on you). Each leaves distinct metadata on the obsession.
 
-7. **Provision is identity-level.** Unlike the other five (each domain-specific), provision is always-on and acts as a *global priority modulator*. It raises the commitment level on any obsession that is instrumentally useful for supporting the people the owner is responsible for. It also makes any trauma linked to provision unsilenceable — the stakes do not let it fade.
+7. **Provision is identity-level.** Unlike the other five (each domain-specific), provision is always-on and acts as a *global priority modulator*. It raises the commitment level on any obsession that is instrumentally useful for supporting the people the owner is responsible for. It also makes any trauma linked to provision unsilenceable, the stakes do not let it fade.
 
 ## Architecture
 
 ### Core objects
 
 - **Obsession**: `{ domain_signature, commitment, seed_types[], seed_metadata, last_activation, decay_rate }`. Multiple seed types can accumulate on one obsession. Commitment is 0..1 and decays without activation.
-- **Impression**: the compressed seed produced at ingest time, shaped by the frame at encoding and tagged with the obsession that gated it. Not a recording of the source — it's what impressed upon the system *through* the current frame. At retrieval, impressions are re-synthesized through the *current* frame, which may differ from `frame_at_encode`. Impressions are *seeds*, not outputs.
-- **Trauma**: verbatim record `{ context, failure, attempted_solutions, resolution_tradeoffs, trigger_pattern, linked_obsession, still_firing }`. Never rewritten — only appended with resolution notes.
+- **Impression**: the compressed seed produced at ingest time, shaped by the frame at encoding and tagged with the obsession that gated it. Not a recording of the source, it's what impressed upon the system *through* the current frame. At retrieval, impressions are re-synthesized through the *current* frame, which may differ from `frame_at_encode`. Impressions are *seeds*, not outputs.
+- **Trauma**: verbatim record `{ context, failure, attempted_solutions, resolution_tradeoffs, trigger_pattern, linked_obsession, still_firing }`. Never rewritten, only appended with resolution notes.
 
 ### Pipelines
 
@@ -62,17 +62,17 @@ Standard RAG: `embed(chunk) → store → retrieve top-k → return text`.
 
 Obsess:
 - Writes are *gated*, not accepted by default.
-- Storage is *impression*, not chunk — compression is part of encoding.
-- Retrieval is *regeneration*, not playback — the answer is synthesized through the current frame of mind.
+- Storage is *impression*, not chunk, compression is part of encoding.
+- Retrieval is *regeneration*, not playback, the answer is synthesized through the current frame of mind.
 - Trauma is a *separate class* with different encoding, storage, and triggering rules, and it's *push-based*, not pull-based.
 - Obsessions are first-class. They are the encoding gate, the retrieval lens, and the thing that carries identity-level state like provision.
 
 ## Stack
 
 - Python 3.11+, in a venv. Always.
-- `sentence-transformers` for embeddings — local, no API.
-- `llama-cpp-python` for local LLM inference — the engine Ollama wraps, called in-process, no daemon.
-- SQLite + NumPy for storage and similarity — kept behind an interface so the vector backend is swappable. User explicitly doesn't care about the vector store, so we pick the simplest thing that works.
+- `sentence-transformers` for embeddings, local, no API.
+- `llama-cpp-python` for local LLM inference, the engine Ollama wraps, called in-process, no daemon.
+- SQLite + NumPy for storage and similarity, kept behind an interface so the vector backend is swappable. User explicitly doesn't care about the vector store, so we pick the simplest thing that works.
 
 ## What's in v0
 
@@ -83,6 +83,6 @@ Obsess:
 ## What's not in v0 (deliberate)
 
 - Real llama-cpp-python wiring. The interface is there; model path and params are a decision point for the owner.
-- Background consolidation loop — the method exists but isn't scheduled.
-- Persistence across process runs — everything is in-memory for now. SQLite is the obvious next step; we'll add when the shape is stable.
+- Background consolidation loop, the method exists but isn't scheduled.
+- Persistence across process runs, everything is in-memory for now. SQLite is the obvious next step; we'll add when the shape is stable.
 - Any UI beyond the CLI.

@@ -1,4 +1,4 @@
-"""obsess quickstart — single agent, in-memory, MockLLM.
+"""obsess quickstart, single agent, in-memory, MockLLM.
 
 Shows: Population construction, seeding an obsession, utility-gated ingest
 (content that matches the obsession is stored; content that doesn't is dropped),
@@ -39,7 +39,7 @@ def main() -> None:
 
     print()
 
-    # Retrieval — the answer is synthesized through the agent's current frame.
+    # Retrieval, the answer is synthesized through the agent's current frame.
     query = "What do I know about our test coverage?"
     result = agent.query(query)
     print(f"Query:  {query}")

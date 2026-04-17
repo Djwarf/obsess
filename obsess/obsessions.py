@@ -145,7 +145,7 @@ class ObsessionRegistry:
     def touch(self, obsession_id: str) -> None:
         """Update last_activation on an activation and persist. Agents should
         call this via Obsession.touch() on the joined view, which delegates
-        to the underlying ObsessionActivation — the registry re-persists via
+        to the underlying ObsessionActivation, the registry re-persists via
         this method if storage-backed consistency is needed. For v1, touch()
         mutates the in-memory activation directly; persistence is explicit via
         persist_activation() below."""

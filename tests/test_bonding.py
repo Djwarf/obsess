@@ -166,7 +166,7 @@ class BondingContract(unittest.TestCase):
             cost="x", unsolvable_at_time=True, linked_obsession_id=a_ob.id,
         )
         pop.selection.run()
-        # Luck over all three — no edge involves a
+        # Luck over all three, no edge involves a
         formed = pop.bonding.luck(["a", "b", "c"], p=1.0)
         for rel in formed:
             self.assertNotIn("a", (rel.from_agent_id, rel.to_agent_id))

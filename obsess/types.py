@@ -18,10 +18,10 @@ class SeedType(str, Enum):
 class AccessMode(str, Enum):
     """How this agent accesses a surfacing trauma.
 
-    ORIGIN: the agent lived it — verbatim render, immune to current-frame narrative rewriting.
-    FULL: full-share inheritance — render re-synthesized through the inheritor's current frame.
-    WARNING: warning-share inheritance — origin-tagged flag, not claimed as own experience.
-    POOL: pool member accessing a pool trauma — 'our failure' framing with (future) slice attribution."""
+    ORIGIN: the agent lived it, verbatim render, immune to current-frame narrative rewriting.
+    FULL: full-share inheritance, render re-synthesized through the inheritor's current frame.
+    WARNING: warning-share inheritance, origin-tagged flag, not claimed as own experience.
+    POOL: pool member accessing a pool trauma, 'our failure' framing with (future) slice attribution."""
 
     ORIGIN = "origin"
     FULL = "full"
@@ -33,7 +33,7 @@ class AccessMode(str, Enum):
 class ObsessionDefinition:
     """Identity of an obsession. Shared across agents that share the obsession;
     invariant to any single agent's activity. If owner_pool_id is set, this
-    definition is pool-scoped — only pool members may activate against it."""
+    definition is pool-scoped, only pool members may activate against it."""
 
     id: str
     domain: str
@@ -46,7 +46,7 @@ class ObsessionDefinition:
 
 @dataclass
 class ObsessionActivation:
-    """An agent's relationship to an obsession — always per-agent."""
+    """An agent's relationship to an obsession, always per-agent."""
 
     obsession_id: str
     agent_id: str
@@ -151,7 +151,7 @@ class Impression:
 class Trauma:
     """Verbatim record of a failure. Record is immutable/append-only; render
     is produced at firing time by a SurfacedTrauma. If pool_id is set, this
-    is a pooled trauma (team failure) — origin_agent_id is still the recorder,
+    is a pooled trauma (team failure), origin_agent_id is still the recorder,
     but access is via pool membership rather than per-agent share."""
 
     id: str

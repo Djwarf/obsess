@@ -79,7 +79,7 @@ class Ingestor:
                 failure=text,
                 attempted_solutions=[],
                 unsolvable_at_time=True,
-                cost="(unspecified — flag later)",
+                cost="(unspecified, flag later)",
                 trigger_pattern=trigger,
                 linked_obsession_id=best_ob.id,
             )
@@ -118,7 +118,7 @@ class Ingestor:
         pool_id: Optional[str] = None,
     ):
         """Explicit failure recording. If pool_id is set, this is a pool trauma
-        (team failure) — caller must verify pool membership before calling."""
+        (team failure), caller must verify pool membership before calling."""
         linked = self.obsessions.get(linked_obsession_id) if linked_obsession_id else None
         trigger_ctx = f"{linked.description} {context}" if linked else context
         trigger = self.llm.extract_trigger_pattern(trigger_ctx, failure)

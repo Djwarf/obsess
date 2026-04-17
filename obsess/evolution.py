@@ -10,7 +10,7 @@ from obsess.storage.memory import InMemoryStorage
 
 @dataclass
 class Event:
-    """An append-only record of something that happened at the meta layer —
+    """An append-only record of something that happened at the meta layer,
     an agent spawned, an agent failed, a relationship formed, Evolution's own
     selection applied pressure. Event is deliberately generic: the payload
     dict carries kind-specific fields."""
@@ -49,7 +49,7 @@ class EvolutionStore:
         for ev in self._storage.query_events(kind=kind):
             if ev["id"] == event_id:
                 return _event_from_dict(ev)
-        # Shouldn't happen — defensive fallback.
+        # Shouldn't happen, defensive fallback.
         return Event(
             id=event_id, kind=kind, payload=dict(payload), agent_id=agent_id
         )

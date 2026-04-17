@@ -93,7 +93,7 @@ class ObsessionPropagationContract(unittest.TestCase):
 
     def test_upward_flow_is_not_default(self):
         """Master/prodigy and parent/child both default to NONE upward for
-        obsessions — a prodigy's later obsessions do not retroactively flow
+        obsessions, a prodigy's later obsessions do not retroactively flow
         to the master."""
         pop = Population.new()
         master = pop.spawn("master")
@@ -106,7 +106,7 @@ class ObsessionPropagationContract(unittest.TestCase):
         )
         prodigy.activate_shared_obsession(biology_def.id, [SeedType.CURIOSITY], 0.6)
 
-        # Master does not inherit prodigy's obsession — and activation-time
+        # Master does not inherit prodigy's obsession, and activation-time
         # propagation is not implemented, so even if defaults were non-NONE
         # upward, this wouldn't flow. Both invariants covered.
         self.assertIsNone(master.obsessions.get(biology_def.id))

@@ -17,7 +17,7 @@ class Storage(Protocol):
 
     - **Entity collections**: id-keyed CRUD. Used by every other store. Queries
       that need field-level filtering are done Python-side on `all(collection)`
-      for v1 — good enough at prototype scale; moving to backend-side filters
+      for v1, good enough at prototype scale; moving to backend-side filters
       is a future optimization behind this same protocol."""
 
     # --- Event log ---

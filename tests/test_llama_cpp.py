@@ -8,7 +8,7 @@ MODEL_PATH = os.environ.get("OBSESS_GGUF_PATH")
 
 @unittest.skipIf(
     not MODEL_PATH,
-    "OBSESS_GGUF_PATH not set — skipping LlamaCppProvider integration test",
+    "OBSESS_GGUF_PATH not set, skipping LlamaCppProvider integration test",
 )
 class LlamaCppProviderIntegration(unittest.TestCase):
     """End-to-end integration test for the real local-LLM path:

@@ -4,7 +4,7 @@ Shows:
 - Constructing a Population on a SQLite file.
 - State surviving close() + reopen.
 - Rehydrating an existing agent (no new spawn event fires).
-- Continuing the agent's behavior — accumulated traumas still surface.
+- Continuing the agent's behavior, accumulated traumas still surface.
 
 Run: python examples/04_persistence.py
 """

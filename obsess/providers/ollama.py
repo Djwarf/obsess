@@ -9,7 +9,7 @@ class OllamaProvider:
     """Ollama backend via the `ollama` Python SDK (install: pip install ollama).
 
     Works with any model served by a local Ollama daemon. Structured output
-    via the `format` parameter — Ollama 0.5+ accepts a JSON schema dict
+    via the `format` parameter, Ollama 0.5+ accepts a JSON schema dict
     directly and enforces it. Older Ollama falls back to JSON mode; quality
     may vary."""
 

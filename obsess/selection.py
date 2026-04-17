@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 @dataclass
 class SelectionReport:
-    """Result of one selection pass. Inspection-friendly — tests and callers
+    """Result of one selection pass. Inspection-friendly, tests and callers
     can read what happened without parsing events."""
 
     retired: list[str] = field(default_factory=list)
@@ -19,14 +19,14 @@ class SelectionReport:
 
 
 class Selection:
-    """Evolution's selection pass. Caller-driven cadence — call run() daily,
+    """Evolution's selection pass. Caller-driven cadence, call run() daily,
     on-demand, or whenever population-level reasoning is warranted.
 
     Observation is handled continuously by EvolutionStore. Selection is the
     periodic synthesis: reads events, identifies agents exceeding a failure
     threshold (retirement), identifies configs with clean outcomes
     (promotion), emits agent_retired and config_promoted events, and returns
-    a report. Does not modify running agents' internal state — retirement is
+    a report. Does not modify running agents' internal state, retirement is
     advisory (Population.retired_ids gets updated; callers may honor it)."""
 
     def __init__(self, population: "Population", retire_threshold: int = 3):

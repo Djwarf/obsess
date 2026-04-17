@@ -43,7 +43,7 @@ class HashEmbedder:
 class SentenceTransformerEmbedder:
     """Real semantic embedder via sentence-transformers.
 
-    Defaults to nomic-ai/nomic-embed-text-v2-moe — a MoE embedder (475M total,
+    Defaults to nomic-ai/nomic-embed-text-v2-moe, a MoE embedder (475M total,
     305M active) with Matryoshka-style dim flexibility (768 native, truncatable
     down to 256 with minimal quality loss). Uses role-specific prompt names
     ("query" vs "passage") as recommended by the Nomic team."""
@@ -77,7 +77,7 @@ class SentenceTransformerEmbedder:
             vec = self._model.encode(text, normalize_embeddings=True)
 
         if self._dim < self._native_dim:
-            # Matryoshka truncation — re-normalize after slicing
+            # Matryoshka truncation, re-normalize after slicing
             vec = np.asarray(vec)[: self._dim]
             n = np.linalg.norm(vec)
             if n > 0:

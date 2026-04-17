@@ -7,7 +7,7 @@ from typing import Optional
 
 
 class InMemoryStorage:
-    """Transient storage backend. Single-process, non-persistent — state
+    """Transient storage backend. Single-process, non-persistent, state
     lives only for the life of this object. Default backend for tests and
     single-session use. Data structures mirror obsess's pre-storage design,
     so switching to this backend is behaviorally identical to how obsess

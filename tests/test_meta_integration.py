@@ -24,7 +24,7 @@ class MetaLayerIntegration(unittest.TestCase):
             commitment=0.8,
         )
 
-        # 1. Creator proposes 'a' — no prior failures, no warnings
+        # 1. Creator proposes 'a', no prior failures, no warnings
         a_result = pop.creator.propose("a", [teaching_spec])
         self.assertEqual(a_result.warnings, [])
 
@@ -45,13 +45,13 @@ class MetaLayerIntegration(unittest.TestCase):
         self.assertIn("a", report.retired)
         self.assertIn("a", pop.retired_ids)
 
-        # 4. Creator proposes 'b' with the same config — warnings include 'a'
+        # 4. Creator proposes 'b' with the same config, warnings include 'a'
         b_result = pop.creator.propose("b", [teaching_spec])
         self.assertEqual(len(b_result.warnings), 1)
         self.assertEqual(b_result.warnings[0].prior_agent_id, "a")
         self.assertEqual(b_result.warnings[0].failure_count, 2)
 
-        # 5. Creator proposes 'c' and 'd' with different configs — no warnings
+        # 5. Creator proposes 'c' and 'd' with different configs, no warnings
         pop.creator.propose(
             "c",
             [ObsessionSpec(

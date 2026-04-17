@@ -55,7 +55,7 @@ class PoolContract(unittest.TestCase):
         self.assertEqual(pool_warnings[0].trauma.id, trauma.id)
         self.assertIn("team failure", pool_warnings[0].rendered_text)
 
-        # And for A (also a member), also as POOL — origin doesn't get ORIGIN
+        # And for A (also a member), also as POOL, origin doesn't get ORIGIN
         # semantics for pool traumas, since the failure is collective
         r_a = a.ingest("Investigating a duplicate invoice issue this morning.")
         pool_warnings_a = [st for st in r_a.trauma_warnings if st.access == AccessMode.POOL]

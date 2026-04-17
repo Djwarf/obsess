@@ -1,6 +1,6 @@
 # Integrating obsess with agent frameworks
 
-obsess is framework-neutral — it owns memory state, your framework owns the reasoning loop. This doc shows how to plug obsess into common setups.
+obsess is framework-neutral, it owns memory state, your framework owns the reasoning loop. This doc shows how to plug obsess into common setups.
 
 The core pattern is a **sandwich** around each LLM call:
 
@@ -53,7 +53,7 @@ def reason(user_message: str) -> str:
 
     prompt = f"{memory_context}\n\nUser: {user_message}" if memory_context else user_message
 
-    # 3. Run your framework's reasoning — this is up to you.
+    # 3. Run your framework's reasoning, this is up to you.
     answer = your_framework.chat(prompt)
 
     # 4. If the framework's outcome was a failure, record it so future
@@ -139,7 +139,7 @@ def make_agent(agent_id: str, domain: str, description: str):
 code_reviewer = make_agent("reviewer", "code_review", "find bugs security issues style")
 test_writer = make_agent("tester", "test_coverage", "unit integration tests edge cases")
 
-# Peer relationship — they work alongside but don't inherit each other's obsessions.
+# Peer relationship, they work alongside but don't inherit each other's obsessions.
 # Warning-share trauma would require explicit sharing (peer default is NONE).
 from obsess.relationships import RelationshipKind
 pop.form_relationship(RelationshipKind.PEER, "reviewer", "tester")
@@ -244,6 +244,6 @@ Event kinds: `spawn`, `agent_proposed`, `agent_created`, `agent_refused`, `agent
 | Model mentorship: inheritor bootstraps from mentor | `RelationshipKind.MASTER_PRODIGY` |
 | Model a task-subordinate that inherits attenuated | `RelationshipKind.PARENT_CHILD` |
 | Two independent agents that should warn each other | `RelationshipKind.PEER` with explicit warning-share |
-| A team whose collective failures must propagate to everyone | `pop.bonding.teambuild(...)` — creates a pool |
-| An LLM-provider-agnostic agent | `ProviderSemantics(AnyProvider)` — same obsess code either way |
+| A team whose collective failures must propagate to everyone | `pop.bonding.teambuild(...)`, creates a pool |
+| An LLM-provider-agnostic agent | `ProviderSemantics(AnyProvider)`, same obsess code either way |
 | State that survives restart | `SQLiteStorage("path.db")` + `rehydrate_agent` |

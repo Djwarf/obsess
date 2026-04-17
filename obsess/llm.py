@@ -22,7 +22,7 @@ class LLM(Protocol):
 
 
 class MockLLM:
-    """Deterministic keyword-based stand-in. Doesn't use a Provider — used for
+    """Deterministic keyword-based stand-in. Doesn't use a Provider, used for
     tests and the demo flow before any real LLM is wired up."""
 
     def score_relevance(self, text: str, obsession_description: str) -> float:
@@ -104,7 +104,7 @@ class ProviderSemantics:
     Parse failures (bad JSON, missing field, wrong type) are caught and return
     conservative defaults (0.0 for scores, False for detection) rather than
     propagating exceptions. This matches the obsess philosophy of being honest
-    about what the system holds — a failed parse is 'no signal', not a crash."""
+    about what the system holds, a failed parse is 'no signal', not a crash."""
 
     def __init__(self, provider: Provider):
         self.provider = provider
@@ -187,7 +187,7 @@ class ProviderSemantics:
             system="You re-synthesize memories through a specific frame of mind.",
             user=(
                 f"Through the frame of '{frame}', synthesize an answer to the QUERY "
-                "using the IMPRESSIONS as substrate. Re-synthesize — don't play back "
+                "using the IMPRESSIONS as substrate. Re-synthesize, don't play back "
                 "verbatim. Answer concisely.\n\n"
                 f"IMPRESSIONS:\n{imp_text}\n\n"
                 f"QUERY: {query}"

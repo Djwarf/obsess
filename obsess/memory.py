@@ -162,7 +162,7 @@ class Memory:
         linked_obsession_id: Optional[str] = None,
         pool_id: Optional[str] = None,
     ) -> Trauma:
-        """Record a failure. If pool_id is set, produces a pool trauma —
+        """Record a failure. If pool_id is set, produces a pool trauma,
         recorder must be a pool member; access is granted to all pool members
         (not via TraumaShares)."""
         if pool_id is not None and not self.pools.is_member(pool_id, self.agent_id):
@@ -184,7 +184,7 @@ class Memory:
     def resolve_with_tradeoff(self, trauma_id: str, tradeoff: str) -> None:
         """Append a resolution tradeoff. For per-agent traumas, only the origin
         may resolve. For pool traumas, any member of the owning pool may
-        resolve — the resolution belongs to the collective."""
+        resolve, the resolution belongs to the collective."""
         t = self.traumas.get(trauma_id)
         if t is None:
             raise KeyError(trauma_id)
@@ -232,7 +232,7 @@ class Memory:
             },
             agent_id=self.agent_id,
         )
-        # Pool traumas don't propagate via TraumaShares — access is via pool membership
+        # Pool traumas don't propagate via TraumaShares, access is via pool membership
         if trauma.pool_id is not None:
             return
         self._propagate_trauma(trauma)

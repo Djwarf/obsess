@@ -26,7 +26,7 @@ class EvolutionStoreSmoke(unittest.TestCase):
 class MemoryEmitsEvents(unittest.TestCase):
     """Two agents share one Population. Every observation event is correctly
     attributed. Event set is tight: spawn, failure_recorded, trauma_resolved,
-    trauma_fired. No content leakage — IDs and structured metadata only."""
+    trauma_fired. No content leakage, IDs and structured metadata only."""
 
     def test_two_agents_emit_attributed_events(self):
         pop = Population.new()
@@ -69,7 +69,7 @@ class MemoryEmitsEvents(unittest.TestCase):
         self.assertEqual(len(resolved), 1)
         self.assertEqual(resolved[0].payload, {"trauma_id": trauma.id})
 
-        # Agent b has no edges to a, no shared obsession — no cross-agent events
+        # Agent b has no edges to a, no shared obsession, no cross-agent events
         b_events = pop.evolution.query(agent_id="b")
         self.assertEqual(len(b_events), 1)
         self.assertEqual(b_events[0].kind, "spawn")

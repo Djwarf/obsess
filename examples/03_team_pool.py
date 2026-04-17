@@ -19,7 +19,7 @@ def main() -> None:
     for agent_id in ["alice", "bob", "carol"]:
         pop.spawn(agent_id)
 
-    # Form the team — pool + pairwise TEAM edges.
+    # Form the team, pool + pairwise TEAM edges.
     pool = pop.bonding.teambuild("billing_team", ["alice", "bob", "carol"])
     print(f"Pool formed: {pool.name} (members: {sorted(pool.member_ids)})")
     print()
@@ -38,12 +38,12 @@ def main() -> None:
             commitment=0.7,
         )
 
-    # Alice records a team failure. This is a *pool trauma* — no individual
+    # Alice records a team failure. This is a *pool trauma*, no individual
     # could have prevented it with local information. No TraumaShare records
     # are needed: pool membership is the access control.
     pop.get_agent("alice").record_failure(
         context="Billing pipeline sent duplicate invoice to customer after retry.",
-        failure="No correlation between first send and retry — team-level state issue.",
+        failure="No correlation between first send and retry, team-level state issue.",
         attempted_solutions=["idempotency check at producer", "retry-safe receiver"],
         cost="Customer complaint, refund issued, reputation hit",
         unsolvable_at_time=True,

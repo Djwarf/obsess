@@ -15,7 +15,7 @@ TRAUMA_TRIGGER_THRESHOLD = 0.15
 def score_obsessions(
     text: str, registry: ObsessionRegistry, llm: LLM
 ) -> list[tuple[Obsession, float]]:
-    """Obsession alignment is a semantic judgment — ask the LLM, not the embedder.
+    """Obsession alignment is a semantic judgment, ask the LLM, not the embedder.
     Batched into a single call. Provision-obsessions amplify; they do not create
     alignment from nothing."""
     active = registry.active()
@@ -61,7 +61,7 @@ def _fires(
 def _render(trauma: Trauma, frame: str, access: AccessMode) -> str:
     """Surface presentation for this agent + frame. Real LLM-driven render for
     FULL (re-synthesis through the inheritor's frame) lands with LlamaCppLLM;
-    for now the render is templated — the seam is correct, the content isn't yet."""
+    for now the render is templated, the seam is correct, the content isn't yet."""
     if access == AccessMode.ORIGIN:
         return trauma.failure
     if access == AccessMode.WARNING:

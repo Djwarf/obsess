@@ -32,7 +32,7 @@ _THINK_RE = re.compile(r"<think>.*?</think>\s*", re.DOTALL | re.IGNORECASE)
 def strip_thinking(text: str) -> str:
     """Remove <think>...</think> reasoning-token blocks that some backends
     interleave with their output (Qwen3 in thinking mode, DeepSeek-R1).
-    Idempotent — no-op if the text contains no think blocks. Anthropic's
+    Idempotent, no-op if the text contains no think blocks. Anthropic's
     extended thinking and OpenAI's o-series keep reasoning in separate
     response fields and don't need this."""
     return _THINK_RE.sub("", text).strip()

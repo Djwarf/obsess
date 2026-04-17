@@ -22,7 +22,7 @@ _TRAUMAS_COLLECTION = "traumas"
 class ImpressionStore:
     """Always per-agent. Uses a shared Storage instance but filters by
     agent_id on read (impressions carry their agent_id as part of the record).
-    Structural isolation is still the enforced invariant — the store's
+    Structural isolation is still the enforced invariant, the store's
     `agent_id` attribute gates both writes (stamp) and reads (filter)."""
 
     def __init__(self, embedder: Embedder, agent_id: str, storage: Optional[Storage] = None):
