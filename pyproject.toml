@@ -9,7 +9,7 @@ description = "A memory system for LLM multi-agent pipelines. Relationship-shape
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "fettahdjwar", email = "fettahdjwar@gmail.com" }]
+authors = [{ name = "djwarf", email = "hello@switchsides.co.uk" }]
 keywords = ["llm", "memory", "agents", "multi-agent", "ai", "rag"]
 classifiers = [
     "Development Status :: 3 - Alpha",
