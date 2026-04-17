@@ -1,0 +1,22 @@
+numpy>=1.26
+sentence-transformers>=2.7
+einops>=0.7   # required by nomic-embed-text-v2-moe's custom MoE code
+pydantic>=2.6
+
+# --- LLM providers ---
+# engram.providers.* each lazy-imports its SDK. Install only the providers you use.
+
+# Local GGUF via llama.cpp. Reference local provider.
+llama-cpp-python>=0.3.0
+
+# Local Ollama daemon.
+# ollama>=0.3.0
+
+# Claude (Anthropic).
+# anthropic>=0.40
+
+# OpenAI + compatible endpoints (DeepSeek, Mistral, Groq, Together AI, xAI/Grok, Fireworks).
+# openai>=1.50
+
+# Google Gemini.
+# google-generativeai>=0.8
