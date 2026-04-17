@@ -112,13 +112,21 @@ Meta-components are **event-triggered** and scope their work to the events they 
 
 Tier-1 agents do not wait on Creator, Bonding, or Evolution's selection. They emit events; meta-components subscribe and respond asynchronously to the events they care about. The exception is Evolution's observation, which must not miss events, but observation is a cheap append, not a reasoning step.
 
-## Build order
+## Implementation status (v0.1.0)
 
-Even under the "honest path, no refactor" commitment, there is still a dependency order:
+All three meta-components are built and tested:
 
-1. **Evolution's store**, append-only event log with queries for (a) failures matching a config signature and (b) relationship outcomes by kind. Everything else reads from this.
-2. **Creator**, minimal form: propose agent, check failure-registry via Evolution, commit spawn, emit event.
-3. **Bonding**, core with the pluggable-strategy seam in place from day one; start with one strategy (hiring or genetic). Other strategies added later without core changes.
-4. **Evolution's selection**, periodic job. Can start as a no-op-with-logging to exercise the cadence mechanism; selection logic added once observation data is flowing.
+- **`EvolutionStore`** in `obsess/evolution.py`: append-only event log, backed by any `Storage` backend, indexed on `kind` and `agent_id`. Every Tier-1 event-of-interest lands here automatically.
+- **`Creator`** in `obsess/creator.py`: `propose(agent_id, obsessions, llm=None)` with `WARN` / `REFUSE` / `IGNORE` policy modes, structural (domain-overlap) failure-registry matching, emits `agent_proposed` / `agent_created` / `agent_refused` events.
+- **`Selection`** in `obsess/selection.py`: `run()` reads the store, retires agents exceeding a failure threshold, promotes zero-failure configs, emits `agent_retired` and `config_promoted`. `Population.retired_ids` caches the retired set.
+- **`Bonding`** in `obsess/bonding.py`: core-plus-strategies with `genetic`, `teambuild`, `hiring`, and `luck` (seeded RNG). Produces relationships via `Population.form_relationship`.
 
-This is build order, not scope reduction. The architecture as designed stands; the steps just reflect dependency.
+All three construct by default on `Population.new()` and are accessible as `pop.creator`, `pop.selection`, `pop.bonding`.
+
+Still deferred:
+
+- **Semantic failure-registry matching.** Creator currently matches on exact obsession-domain overlap. Embedding-based similarity (reusing the existing `Embedder`) is the natural upgrade.
+- **LLM-driven fit scoring in `Bonding.hiring`.** Current hiring is structural (commitment threshold on a named domain).
+- **Background scheduler for `Selection.run()`.** Selection cadence is manual; a long-running daemon would let cadence fire on its own.
+- **Creator lineage.** Creator itself is exogenous; Creator-on-Creator production under Evolution's pressure is a future extension.
+- **Enforcement of retirement.** Retirement is advisory: `Population.retired_ids` is populated but callers are not blocked from operating on retired agents.

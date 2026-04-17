@@ -56,7 +56,7 @@ Key property: the prodigy relationship is **scoped to a domain**. M and S might 
 |---|---|---|
 | Team | Pool state; membership persists | Pooled commitment on unused obsessions |
 | Peer / colleague | Yes | Relationship strength → sharing effects |
-| Parent / child | No |, |
+| Parent / child | No | none |
 | Master / prodigy | Yes | Bootstrapped commitment → relationship degrades to peer |
 
 ## Commitment decomposition
@@ -108,17 +108,15 @@ An agent can have multiple relationships simultaneously. Shared objects carry th
 
 **Dissolution.** A dissolved pool becomes read-only. Members retain warning-level access to pool memory. Dissolved pools are historical records; they don't re-form automatically.
 
-## What v1 multi-agent should include
+## Implementation status (v0.1.0)
 
-Minimum shape to stand up two agents with relationships:
-- Agent-scoped `ImpressionStore` (refuses cross-agent reads at the API).
-- `ObsessionDefinition` + `ObsessionActivation` split.
-- Share relationship table with `mode: warning | full`.
-- One relationship kind to start (peer or team) so the propagation path is exercised end-to-end before adding more.
-- Eager propagation function with a clear seam for later lazy rewrite.
+All four relationship kinds (team, peer, parent/child, master/prodigy) are implemented with direction-aware sharing defaults and eager propagation. The `Obsession` split (`ObsessionDefinition` + `ObsessionActivation`) and per-agent `ImpressionStore` are in place. `SharedObsessions` holds shared definitions; `TraumaShares` holds per-agent access records. Bootstrapped commitment mechanics work for master/prodigy. Pool obsessions and pool traumas are membership-gated. The `SurfacedTrauma` render layer distinguishes ORIGIN, FULL, WARNING, and POOL access modes.
 
-What to defer until there's a forcing scenario:
-- Bootstrapped commitment mechanics (needs master/prodigy to exist).
-- Render-layer re-synthesis for inheritors (needs full-share to exist).
-- Pool dissolution semantics (needs a long-running pool).
-- Relationship decay (needs a relationship that has run long enough to decay meaningfully).
+Still deferred:
+
+- **Pool dissolution semantics.** Pools can be formed and members added/removed, but there is no dissolve path. When implemented, dissolved pools become read-only historical records (per the `Pool lifecycle` section above).
+- **Relationship decay.** `KindMeta.decays` records whether a kind decays, but no scheduler applies relationship-strength decay or bleeds off bootstrapped commitment over inactive time. Currently decay is caller-driven.
+- **Activation-time obsession propagation.** Formation-time propagation is implemented (when a master/prodigy edge is formed, the prodigy inherits). The analogue for "master later activates a new shared obsession, prodigy inherits it" is not.
+- **LLM-driven render re-synthesis for inheritors.** The render layer currently uses templated strings for FULL access. Swapping in a real LLM re-synthesis through the inheritor's frame is a straightforward extension of `ProviderSemantics`.
+- **Slice attribution on pool render.** Pool traumas surface with a "team failure" framing but do not yet compute per-member slice attribution.
+- **Pool aggregation.** Weighted-mean commitment across members is described above but not computed or exposed.

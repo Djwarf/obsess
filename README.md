@@ -223,14 +223,16 @@ if detected_failure:
 
 ## Documentation
 
-- [`DESIGN.md`](DESIGN.md), per-agent memory architecture (utility gate, impressions, trauma, obsessions).
-- [`DESIGN-MULTI.md`](DESIGN-MULTI.md), multi-agent model: ownership modes, relationship kinds, pools, propagation, render layer.
-- [`DESIGN-META.md`](DESIGN-META.md), meta-layer: Creator, Evolution selection, Bonding.
-- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md), plugging obsess into common agent frameworks.
-- [`examples/`](examples/), runnable scenarios.
+- [`DESIGN.md`](DESIGN.md): per-agent memory architecture (utility gate, impressions, trauma, obsessions).
+- [`DESIGN-MULTI.md`](DESIGN-MULTI.md): multi-agent model. Ownership modes, relationship kinds, pools, propagation, render layer.
+- [`DESIGN-META.md`](DESIGN-META.md): meta-layer. Creator, Evolution selection, Bonding.
+- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md): plugging obsess into common agent frameworks (LangChain, Claude Agent SDK, raw tool loops).
+- [`examples/`](examples/): runnable scenarios.
+- [`CHANGELOG.md`](CHANGELOG.md): release notes.
+- [`CONTRIBUTING.md`](CONTRIBUTING.md): how to contribute.
 
 ---
 
 ## Status
 
-Alpha. The architecture is complete and tested (61 tests). The API may evolve with real-world use. Feedback welcome.
+Alpha (v0.1.0). The architecture is complete and tested (61 tests, CI green on Python 3.10 to 3.13, end-to-end verified against Qwen3-4B). The API may evolve with real-world use. Feedback and contributions welcome.

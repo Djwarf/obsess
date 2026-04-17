@@ -69,20 +69,27 @@ Obsess:
 
 ## Stack
 
-- Python 3.11+, in a venv. Always.
-- `sentence-transformers` for embeddings, local, no API.
-- `llama-cpp-python` for local LLM inference, the engine Ollama wraps, called in-process, no daemon.
-- SQLite + NumPy for storage and similarity, kept behind an interface so the vector backend is swappable. User explicitly doesn't care about the vector store, so we pick the simplest thing that works.
+- Python 3.10+ (tested 3.10 to 3.13), in a venv.
+- `sentence-transformers` for semantic embeddings (optional; `HashEmbedder` works with no deps).
+- Provider-agnostic LLM layer in `obsess/providers/` with concrete backends for llama.cpp, Ollama, Anthropic, OpenAI-compatible (OpenAI, DeepSeek, Mistral, Groq, Together, xAI, Fireworks), and Gemini. `MockLLM` runs the flow without any SDK.
+- NumPy for similarity. Storage is plug-and-play via the `Storage` protocol in `obsess/storage/`; `InMemoryStorage` and `SQLiteStorage` ship with the library.
 
-## What's in v0
+## Current status (v0.1.0)
 
-- The scaffolding above with a **mock LLM** so the architecture runs end-to-end without a model file. You can see the control flow, the data shapes, and the interactions before you commit to a specific GGUF model.
-- A CLI to: seed obsessions, ingest text, record failures, query, and inspect state.
-- A single end-to-end test demonstrating: utility-gated ingest, impression storage, trauma firing, frame-shifted retrieval.
+Implemented and tested (61 tests across Python 3.10 to 3.13):
 
-## What's not in v0 (deliberate)
+- Per-agent memory: utility-gated ingest, impressions with frame-shifted regeneration, trauma as a separate verbatim class, six obsession seed pathways.
+- Multi-agent architecture per `DESIGN-MULTI.md`: four relationship kinds, formation-time obsession propagation, eager trauma propagation, pool primitives, render layer.
+- Meta-layer per `DESIGN-META.md`: Creator, Selection, Bonding fully built.
+- Real LLM providers with Qwen3-4B end-to-end integration test.
+- Persistent storage via `SQLiteStorage`; agents survive process restart via `Population.rehydrate_agent`.
+- CLI (`obsess-demo`) for the original single-agent walkthrough.
 
-- Real llama-cpp-python wiring. The interface is there; model path and params are a decision point for the owner.
-- Background consolidation loop, the method exists but isn't scheduled.
-- Persistence across process runs, everything is in-memory for now. SQLite is the obvious next step; we'll add when the shape is stable.
+Still deferred (not yet implemented):
+
+- Background consolidation loop: `Obsession.decay()` and `KindMeta.decays` are defined but no scheduler invokes them. Decay is caller-driven today.
+- Activation-time obsession propagation (the existing path is formation-time only).
+- LLM-driven trauma render for FULL-share inheritors (current render is templated).
+- Pool aggregation (weighted-mean commitment across members).
+- Semantic failure-registry matching (Creator uses exact domain-overlap today).
 - Any UI beyond the CLI.

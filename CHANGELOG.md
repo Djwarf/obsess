@@ -7,7 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0], 2026-04-17
+### Changed
+
+- Author field updated to `djwarf <hello@switchsides.co.uk>` (shipped in the next release; v0.1.0 on PyPI still shows the initial metadata).
+- Design documents (`DESIGN.md`, `DESIGN-MULTI.md`, `DESIGN-META.md`) have current-status sections describing what's implemented vs still deferred, so readers can distinguish live behaviour from architectural intent.
+- README points to `CONTRIBUTING.md` and `CHANGELOG.md` alongside the design docs.
+
+### Added
+
+- `CONTRIBUTING.md`: dev setup, PR expectations, areas good for contribution.
+- GitHub issue templates (bug report, feature request), PR template, disabled blank issues.
+- README badges: PyPI version, Python versions, licence, CI status.
+- GitHub release for v0.1.0 with highlighted release notes.
+
+## [0.1.0] - 2026-04-17
 
 Initial release.
 
