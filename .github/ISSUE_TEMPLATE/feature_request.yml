@@ -1,0 +1,63 @@
+name: Feature request
+description: Suggest a new capability or improvement.
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time. The goal here is to understand the use case before discussing implementation.
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What are you trying to accomplish? Concrete scenario, not abstract description.
+      placeholder: "I'm building a multi-agent customer support pipeline and I want ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behaviour
+      description: What would you like obsess to do? API sketch welcome.
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What did you try or consider before opening this?
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Which area does this touch?
+      multiple: true
+      options:
+        - Per-agent memory (obsessions, impressions, trauma)
+        - Multi-agent relationships and pools
+        - Meta-layer (Creator, Selection, Bonding)
+        - LLM providers
+        - Storage backends
+        - Docs or examples
+        - Tooling or packaging
+        - Other
+    validations:
+      required: false
+
+  - type: dropdown
+    id: willingness
+    attributes:
+      label: Would you be willing to contribute this?
+      options:
+        - "Yes, I'd like to submit a PR"
+        - "Maybe, depending on guidance"
+        - "No, just proposing"
+    validations:
+      required: true

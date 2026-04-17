@@ -1,0 +1,109 @@
+name: Bug report
+description: Something in obsess is not working the way it should.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for filing a bug. Please include a minimal reproducer so we can confirm the issue quickly.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the observed behaviour.
+      placeholder: When I call X with Y, I get Z but I expected W.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducer
+    attributes:
+      label: Minimal reproducer
+      description: Smallest snippet that shows the issue. Paste the exact code you ran.
+      render: python
+      placeholder: |
+        from obsess import Population
+        pop = Population.new()
+        # ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+      description: What did you expect to happen instead?
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: obsess version
+      description: "Run: pip show obsess | grep Version"
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.12.1"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: "Ubuntu 24.04 / macOS 14.3 / Windows 11"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: llm_provider
+    attributes:
+      label: LLM provider (if relevant)
+      options:
+        - Not relevant
+        - MockLLM
+        - LlamaCppProvider
+        - OllamaProvider
+        - AnthropicProvider
+        - OpenAICompatibleProvider
+        - GeminiProvider
+        - Custom
+    validations:
+      required: false
+
+  - type: dropdown
+    id: storage
+    attributes:
+      label: Storage backend (if relevant)
+      options:
+        - Not relevant
+        - InMemoryStorage
+        - SQLiteStorage
+        - Custom
+    validations:
+      required: false
+
+  - type: textarea
+    id: stacktrace
+    attributes:
+      label: Stack trace or error output
+      description: Full stack trace or error text, if applicable.
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Links, screenshots, prior context, workarounds you've tried.
+    validations:
+      required: false

@@ -1,5 +1,10 @@
 # obsess
 
+[![PyPI](https://img.shields.io/pypi/v/obsess.svg)](https://pypi.org/project/obsess/)
+[![Python](https://img.shields.io/pypi/pyversions/obsess.svg)](https://pypi.org/project/obsess/)
+[![License](https://img.shields.io/pypi/l/obsess.svg)](LICENSE)
+[![CI](https://github.com/Djwarf/obsess/actions/workflows/tests.yml/badge.svg)](https://github.com/Djwarf/obsess/actions/workflows/tests.yml)
+
 **A memory system for LLM multi-agent pipelines.** Plug-and-play LLM providers (llama.cpp, Ollama, Anthropic, OpenAI-compatible, Gemini), plug-and-play storage (in-memory, SQLite, or your own), and a memory model that treats agent relationships as first-class: siblings share differently than peers, a master and a prodigy share differently than parent and child, a team's failure is not any individual's failure.
 
 Standard multi-agent memory puts everything in one store and lets every agent read from it. obsess doesn't. Memory is **utility-gated** (only content that matches an active obsession is encoded), **compressed into impressions** (regenerated through the current frame at retrieval), and distinguishes **trauma** (verbatim, self-surfacing, failure-linked) from regular recall. When multiple agents are in play, relationships shape what flows between them: obsessions inherit through parent/child edges, warnings propagate across peers, team failures live in pools.

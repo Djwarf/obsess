@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Read the docs first
+    url: https://github.com/Djwarf/obsess#documentation
+    about: README, design docs, examples, and integration patterns.
+  - name: Contributing guide
+    url: https://github.com/Djwarf/obsess/blob/main/CONTRIBUTING.md
+    about: Dev setup, PR expectations, where to start.
