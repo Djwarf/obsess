@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from engram.population import Population
-from engram.relationships import (
+from obsess.population import Population
+from obsess.relationships import (
     KIND_META,
     RelationshipKind,
     SharingMode,

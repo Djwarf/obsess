@@ -3,17 +3,17 @@ from __future__ import annotations
 import uuid
 from typing import Optional
 
-from engram.embed import Embedder
-from engram.shared import SharedObsessions
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
-from engram.storage.serialize import (
+from obsess.embed import Embedder
+from obsess.shared import SharedObsessions
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
+from obsess.storage.serialize import (
     obsession_activation_from_dict,
     obsession_activation_to_dict,
     obsession_def_from_dict,
     obsession_def_to_dict,
 )
-from engram.types import (
+from obsess.types import (
     Obsession,
     ObsessionActivation,
     ObsessionDefinition,

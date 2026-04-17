@@ -5,9 +5,9 @@ from typing import Optional, Protocol
 
 class Storage(Protocol):
     """Plug-and-play storage primitive. Mirrors the LLM provider architecture:
-    engram's stores (EvolutionStore, TraumaStore, ImpressionStore, etc.)
+    obsess's stores (EvolutionStore, TraumaStore, ImpressionStore, etc.)
     consume this thin protocol; swapping backends (in-memory, SQLite, Postgres,
-    Redis, ...) is a drop-in change that does not affect engram's semantics.
+    Redis, ...) is a drop-in change that does not affect obsess's semantics.
 
     Two concern groups:
 
@@ -53,11 +53,11 @@ class Storage(Protocol):
 # Re-export concrete backends.
 
 try:
-    from engram.storage.memory import InMemoryStorage  # noqa: F401
+    from obsess.storage.memory import InMemoryStorage  # noqa: F401
 except ImportError:
     pass
 
 try:
-    from engram.storage.sqlite import SQLiteStorage  # noqa: F401
+    from obsess.storage.sqlite import SQLiteStorage  # noqa: F401
 except ImportError:
     pass

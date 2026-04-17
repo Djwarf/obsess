@@ -1,31 +1,31 @@
-# engram
+# obsess
 
 **A memory system for LLM multi-agent pipelines.** Plug-and-play LLM providers (llama.cpp, Ollama, Anthropic, OpenAI-compatible, Gemini), plug-and-play storage (in-memory, SQLite, or your own), and a memory model that treats agent relationships as first-class: siblings share differently than peers, a master and a prodigy share differently than parent and child, a team's failure is not any individual's failure.
 
-Standard multi-agent memory puts everything in one store and lets every agent read from it. engram doesn't. Memory is **utility-gated** (only content that matches an active obsession is encoded), **compressed into impressions** (regenerated through the current frame at retrieval), and distinguishes **trauma** (verbatim, self-surfacing, failure-linked) from regular recall. When multiple agents are in play, relationships shape what flows between them: obsessions inherit through parent/child edges, warnings propagate across peers, team failures live in pools.
+Standard multi-agent memory puts everything in one store and lets every agent read from it. obsess doesn't. Memory is **utility-gated** (only content that matches an active obsession is encoded), **compressed into impressions** (regenerated through the current frame at retrieval), and distinguishes **trauma** (verbatim, self-surfacing, failure-linked) from regular recall. When multiple agents are in play, relationships shape what flows between them: obsessions inherit through parent/child edges, warnings propagate across peers, team failures live in pools.
 
 ---
 
 ## Install
 
 ```bash
-pip install engram
+pip install obsess
 
 # Or with LLM providers you use:
-pip install "engram[anthropic]"           # Claude
-pip install "engram[llamacpp]"            # Local GGUF
-pip install "engram[openai]"              # OpenAI + compatible (DeepSeek, Mistral, Groq, ...)
-pip install "engram[all-providers]"       # Everything
+pip install "obsess[anthropic]"           # Claude
+pip install "obsess[llamacpp]"            # Local GGUF
+pip install "obsess[openai]"              # OpenAI + compatible (DeepSeek, Mistral, Groq, ...)
+pip install "obsess[all-providers]"       # Everything
 
 # With semantic embeddings (optional; HashEmbedder works with no deps):
-pip install "engram[embeddings]"
+pip install "obsess[embeddings]"
 ```
 
 From source:
 
 ```bash
-git clone https://github.com/djwarf/engram
-cd engram
+git clone https://github.com/djwarf/obsess
+cd obsess
 pip install -e ".[all]"
 ```
 
@@ -34,8 +34,8 @@ pip install -e ".[all]"
 ## Quickstart
 
 ```python
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 
 pop = Population.new()                    # in-memory; swap storage with SQLiteStorage(path)
 agent = pop.spawn("assistant")
@@ -61,9 +61,9 @@ See [`examples/`](examples/) for multi-agent scenarios, pools, persistence, and 
 
 ---
 
-## Why engram
+## Why obsess
 
-| Standard RAG | engram |
+| Standard RAG | obsess |
 |---|---|
 | Everything embeds, sorts at retrieval | Gate at encode: most content is *not* stored |
 | Chunks are stored verbatim | Impressions are compressed through the current frame |
@@ -79,18 +79,18 @@ See [`examples/`](examples/) for multi-agent scenarios, pools, persistence, and 
 The semantic layer (scoring, impression formation, regeneration) lives in one place; swapping LLM backends is a drop-in change.
 
 ```python
-from engram import Population, ProviderSemantics
+from obsess import Population, ProviderSemantics
 
 # Local GGUF via llama.cpp (Qwen3, Gemma, Llama, Mistral, ...)
-from engram.providers import LlamaCppProvider
+from obsess.providers import LlamaCppProvider
 llm = ProviderSemantics(LlamaCppProvider("/path/to/model.gguf"))
 
 # Anthropic (Claude)
-from engram.providers import AnthropicProvider
+from obsess.providers import AnthropicProvider
 llm = ProviderSemantics(AnthropicProvider(model="claude-sonnet-4-6"))
 
 # OpenAI — and DeepSeek, Mistral, Groq, Together, xAI, Fireworks via the same class
-from engram.providers import OpenAICompatibleProvider
+from obsess.providers import OpenAICompatibleProvider
 llm = ProviderSemantics(OpenAICompatibleProvider(
     model="deepseek-chat",
     base_url="https://api.deepseek.com/v1",
@@ -99,47 +99,47 @@ llm = ProviderSemantics(OpenAICompatibleProvider(
 ))
 
 # Google Gemini
-from engram.providers import GeminiProvider
+from obsess.providers import GeminiProvider
 llm = ProviderSemantics(GeminiProvider(model="gemini-2.5-flash"))
 
 # Ollama
-from engram.providers import OllamaProvider
+from obsess.providers import OllamaProvider
 llm = ProviderSemantics(OllamaProvider(model="qwen3:4b"))
 
 pop = Population.new()
 agent = pop.spawn("assistant", llm=llm)
 ```
 
-Writing a new provider is ~50 lines implementing the `Provider` protocol. See [`engram/providers/`](engram/providers/).
+Writing a new provider is ~50 lines implementing the `Provider` protocol. See [`obsess/providers/`](obsess/providers/).
 
 ---
 
 ## Storage selection
 
 ```python
-from engram import Population
-from engram.storage.sqlite import SQLiteStorage
+from obsess import Population
+from obsess.storage.sqlite import SQLiteStorage
 
 # In-memory (default; transient)
 pop = Population.new()
 
 # SQLite (persistent across sessions)
-pop = Population.new(storage=SQLiteStorage("engram.db"))
+pop = Population.new(storage=SQLiteStorage("obsess.db"))
 
 # Rehydrate agents from a prior session
 for agent_id in pop.agent_ids_on_record():
     pop.rehydrate_agent(agent_id)          # pass llm= if needed
 ```
 
-Custom backends (Postgres, Redis, DynamoDB, ...) implement the `Storage` protocol. See [`engram/storage/`](engram/storage/).
+Custom backends (Postgres, Redis, DynamoDB, ...) implement the `Storage` protocol. See [`obsess/storage/`](obsess/storage/).
 
 ---
 
 ## Multi-agent: relationships and pools
 
 ```python
-from engram import Population, ObsessionSpec, RelationshipKind
-from engram.types import SeedType
+from obsess import Population, ObsessionSpec, RelationshipKind
+from obsess.types import SeedType
 
 pop = Population.new()
 
@@ -191,7 +191,7 @@ See [`DESIGN-MULTI.md`](DESIGN-MULTI.md) for the full relationship model.
 
 ## Integrating with agent frameworks
 
-engram is framework-neutral — it provides memory state; your framework provides the reasoning loop. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) for patterns with LangChain, the Claude Agent SDK, and raw tool-loop agents.
+obsess is framework-neutral — it provides memory state; your framework provides the reasoning loop. See [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) for patterns with LangChain, the Claude Agent SDK, and raw tool-loop agents.
 
 The core pattern is a sandwich around each LLM call:
 
@@ -221,7 +221,7 @@ if detected_failure:
 - [`DESIGN.md`](DESIGN.md) — per-agent memory architecture (utility gate, impressions, trauma, obsessions).
 - [`DESIGN-MULTI.md`](DESIGN-MULTI.md) — multi-agent model: ownership modes, relationship kinds, pools, propagation, render layer.
 - [`DESIGN-META.md`](DESIGN-META.md) — meta-layer: Creator, Evolution selection, Bonding.
-- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) — plugging engram into common agent frameworks.
+- [`docs/INTEGRATIONS.md`](docs/INTEGRATIONS.md) — plugging obsess into common agent frameworks.
 - [`examples/`](examples/) — runnable scenarios.
 
 ---

@@ -2,14 +2,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from engram.embed import Embedder
-from engram.llm import LLM
-from engram.obsessions import ObsessionRegistry
-from engram.pools import PoolRegistry
-from engram.scoring import score_obsessions, surface_traumas
-from engram.shares import TraumaShares
-from engram.store import ImpressionStore, TraumaStore
-from engram.types import IngestResult, SeedType
+from obsess.embed import Embedder
+from obsess.llm import LLM
+from obsess.obsessions import ObsessionRegistry
+from obsess.pools import PoolRegistry
+from obsess.scoring import score_obsessions, surface_traumas
+from obsess.shares import TraumaShares
+from obsess.store import ImpressionStore, TraumaStore
+from obsess.types import IngestResult, SeedType
 
 
 ALIGNMENT_THRESHOLD = 0.05

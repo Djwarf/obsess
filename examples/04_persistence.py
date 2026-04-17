@@ -1,4 +1,4 @@
-"""Persistent engram across sessions via SQLiteStorage.
+"""Persistent obsess across sessions via SQLiteStorage.
 
 Shows:
 - Constructing a Population on a SQLite file.
@@ -12,14 +12,14 @@ Run: python examples/04_persistence.py
 import os
 import tempfile
 
-from engram import Population
-from engram.storage.sqlite import SQLiteStorage
-from engram.types import SeedType
+from obsess import Population
+from obsess.storage.sqlite import SQLiteStorage
+from obsess.types import SeedType
 
 
 def main() -> None:
     with tempfile.TemporaryDirectory() as td:
-        db_path = os.path.join(td, "engram.db")
+        db_path = os.path.join(td, "obsess.db")
 
         # --- Session 1: build state ---
         print("=== Session 1: creating state ===")

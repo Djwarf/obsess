@@ -9,9 +9,9 @@ Shows:
 Run: python examples/02_multi_agent_relationships.py
 """
 
-from engram import ObsessionSpec, Population
-from engram.relationships import RelationshipKind
-from engram.types import SeedType
+from obsess import ObsessionSpec, Population
+from obsess.relationships import RelationshipKind
+from obsess.types import SeedType
 
 
 def main() -> None:

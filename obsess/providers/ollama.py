@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from engram.providers import strip_thinking
+from obsess.providers import strip_thinking
 
 
 class OllamaProvider:

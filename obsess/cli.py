@@ -3,9 +3,9 @@ from __future__ import annotations
 import json
 import sys
 
-from engram.embed import SentenceTransformerEmbedder
-from engram.population import Population
-from engram.types import SeedType
+from obsess.embed import SentenceTransformerEmbedder
+from obsess.population import Population
+from obsess.types import SeedType
 
 
 def _pretty(result_dict: dict) -> str:
@@ -142,7 +142,7 @@ def main() -> None:
         demo()
     else:
         print(f"unknown command: {args[0]}")
-        print("try: python -m engram.cli demo")
+        print("try: python -m obsess.cli demo")
         sys.exit(1)
 
 

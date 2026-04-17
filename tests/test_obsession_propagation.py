@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from engram.population import Population
-from engram.relationships import RelationshipKind
-from engram.types import SeedType
+from obsess.population import Population
+from obsess.relationships import RelationshipKind
+from obsess.types import SeedType
 
 
 class ObsessionPropagationContract(unittest.TestCase):

@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import unittest
 
-from engram.population import Population
-from engram.types import AccessMode, SeedType
+from obsess.population import Population
+from obsess.types import AccessMode, SeedType
 
 
 class PoolContract(unittest.TestCase):

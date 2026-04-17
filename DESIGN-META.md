@@ -1,10 +1,10 @@
-# engram — meta-layer architecture
+# obsess — meta-layer architecture
 
 ## What this document adds
 
 `DESIGN.md` specifies the per-agent architecture. `DESIGN-MULTI.md` specifies how multiple agents relate: ownership modes, relationship kinds, pooling, propagation. This document covers the **meta-layer**: system components that operate on agents rather than alongside them. They create agents, apply selection pressure to populations over time, and produce the relationships between agents.
 
-The meta-layer is not a third tier of engram agents. Meta-components are **system components, not engram agents** — they do not have utility-gated ingest, do not form impressions, and do not use trauma machinery. They have memory, but it is structured differently from agent memory, because they have different constraints.
+The meta-layer is not a third tier of obsess agents. Meta-components are **system components, not obsess agents** — they do not have utility-gated ingest, do not form impressions, and do not use trauma machinery. They have memory, but it is structured differently from agent memory, because they have different constraints.
 
 ## Core framing
 
@@ -19,9 +19,9 @@ Three meta-components:
 - **Evolution (Darwin).** Maintains the population-level history. Observes outcomes; applies selection pressure.
 - **Bonding (matchmaking / hiring / genetic / teambuilding / luck).** Produces relationships between agents.
 
-## Why meta-components are not engram agents
+## Why meta-components are not obsess agents
 
-An engram agent is defined by its specificity: a bounded frame, utility-gated attention, frame-shifted re-synthesis at retrieval, trauma as protection against a self-narrative that rewrites the past. Those properties are load-bearing for what Tier-1 agents are *for*: modeling a specific mind.
+An obsess agent is defined by its specificity: a bounded frame, utility-gated attention, frame-shifted re-synthesis at retrieval, trauma as protection against a self-narrative that rewrites the past. Those properties are load-bearing for what Tier-1 agents are *for*: modeling a specific mind.
 
 Meta-components have none of those constraints.
 

@@ -3,16 +3,16 @@ from __future__ import annotations
 import uuid
 from typing import Optional
 
-from engram.embed import Embedder, cosine
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
-from engram.storage.serialize import (
+from obsess.embed import Embedder, cosine
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
+from obsess.storage.serialize import (
     impression_from_dict,
     impression_to_dict,
     trauma_from_dict,
     trauma_to_dict,
 )
-from engram.types import Impression, Trauma
+from obsess.types import Impression, Trauma
 
 
 _IMPRESSIONS_COLLECTION = "impressions"

@@ -5,9 +5,9 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Optional
 
-from engram.evolution import EvolutionStore
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
+from obsess.evolution import EvolutionStore
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
 
 
 _POOLS_COLLECTION = "pools"
@@ -39,7 +39,7 @@ class PoolRegistry:
         self._pools: dict[str, Pool] = self._hydrate()
 
     def _hydrate(self) -> dict[str, Pool]:
-        from engram.storage.serialize import pool_from_dict
+        from obsess.storage.serialize import pool_from_dict
         cache: dict[str, Pool] = {}
         for data in self._storage.all(_POOLS_COLLECTION):
             p = pool_from_dict(data)
@@ -47,7 +47,7 @@ class PoolRegistry:
         return cache
 
     def _persist(self, pool: Pool) -> None:
-        from engram.storage.serialize import pool_to_dict
+        from obsess.storage.serialize import pool_to_dict
         self._storage.put(_POOLS_COLLECTION, pool.id, pool_to_dict(pool))
 
     def add(self, name: str, member_ids: list[str]) -> Pool:

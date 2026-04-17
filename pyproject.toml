@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "engram"
+name = "obsess"
 version = "0.1.0"
 description = "A memory system for LLM multi-agent pipelines. Relationship-shaped memory topology across per-agent minds."
 readme = "README.md"
@@ -57,13 +57,13 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/djwarf/engram"
-Documentation = "https://github.com/djwarf/engram#readme"
-Issues = "https://github.com/djwarf/engram/issues"
+Homepage = "https://github.com/djwarf/obsess"
+Documentation = "https://github.com/djwarf/obsess#readme"
+Issues = "https://github.com/djwarf/obsess/issues"
 
 [project.scripts]
-engram-demo = "engram.cli:main"
+obsess-demo = "obsess.cli:main"
 
 [tool.setuptools.packages.find]
-include = ["engram*"]
+include = ["obsess*"]
 exclude = ["tests*", "examples*", "docs*"]

@@ -9,8 +9,8 @@ from typing import Optional
 class InMemoryStorage:
     """Transient storage backend. Single-process, non-persistent — state
     lives only for the life of this object. Default backend for tests and
-    single-session use. Data structures mirror engram's pre-storage design,
-    so switching to this backend is behaviorally identical to how engram
+    single-session use. Data structures mirror obsess's pre-storage design,
+    so switching to this backend is behaviorally identical to how obsess
     stores worked before the storage refactor."""
 
     def __init__(self):

@@ -1,4 +1,4 @@
-"""engram quickstart — single agent, in-memory, MockLLM.
+"""obsess quickstart — single agent, in-memory, MockLLM.
 
 Shows: Population construction, seeding an obsession, utility-gated ingest
 (content that matches the obsession is stored; content that doesn't is dropped),
@@ -7,8 +7,8 @@ and retrieval through the current frame.
 Run: python examples/01_quickstart.py
 """
 
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 
 
 def main() -> None:

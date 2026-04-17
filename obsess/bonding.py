@@ -3,11 +3,11 @@ from __future__ import annotations
 import random
 from typing import TYPE_CHECKING, Optional
 
-from engram.pools import Pool
-from engram.relationships import Relationship, RelationshipKind
+from obsess.pools import Pool
+from obsess.relationships import Relationship, RelationshipKind
 
 if TYPE_CHECKING:
-    from engram.population import Population
+    from obsess.population import Population
 
 
 class Bonding:

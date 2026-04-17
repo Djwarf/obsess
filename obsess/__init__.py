@@ -1,5 +1,5 @@
-from engram.bonding import Bonding
-from engram.creator import (
+from obsess.bonding import Bonding
+from obsess.creator import (
     Creator,
     CreatorPolicy,
     CreatorResult,
@@ -7,24 +7,24 @@ from engram.creator import (
     FailureRegistryMatch,
     ObsessionSpec,
 )
-from engram.evolution import Event, EvolutionStore
-from engram.llm import LLM, MockLLM, ProviderSemantics
-from engram.memory import Memory
-from engram.pools import Pool, PoolRegistry
-from engram.population import Population
-from engram.storage import Storage
-from engram.relationships import (
+from obsess.evolution import Event, EvolutionStore
+from obsess.llm import LLM, MockLLM, ProviderSemantics
+from obsess.memory import Memory
+from obsess.pools import Pool, PoolRegistry
+from obsess.population import Population
+from obsess.storage import Storage
+from obsess.relationships import (
     KIND_META,
     Relationship,
     RelationshipGraph,
     RelationshipKind,
     SharingMode,
 )
-from engram.selection import Selection, SelectionReport
-from engram.shared import SharedObsessions
-from engram.shares import TraumaShare, TraumaShares
-from engram.store import TraumaStore
-from engram.types import AccessMode, SurfacedTrauma
+from obsess.selection import Selection, SelectionReport
+from obsess.shared import SharedObsessions
+from obsess.shares import TraumaShare, TraumaShares
+from obsess.store import TraumaStore
+from obsess.types import AccessMode, SurfacedTrauma
 
 __all__ = [
     "Memory",

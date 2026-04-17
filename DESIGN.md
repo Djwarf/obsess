@@ -1,4 +1,4 @@
-# engram — a memory system modeled on a specific mind
+# obsess — a memory system modeled on a specific mind
 
 ## Why this exists
 
@@ -60,7 +60,7 @@ The owner has described their own memory with the following properties. The arch
 
 Standard RAG: `embed(chunk) → store → retrieve top-k → return text`.
 
-Engram:
+Obsess:
 - Writes are *gated*, not accepted by default.
 - Storage is *impression*, not chunk — compression is part of encoding.
 - Retrieval is *regeneration*, not playback — the answer is synthesized through the current frame of mind.

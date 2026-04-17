@@ -4,8 +4,8 @@ import time
 from dataclasses import dataclass, field
 from typing import Optional
 
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
 
 
 @dataclass

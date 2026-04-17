@@ -6,9 +6,9 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
-from engram.evolution import EvolutionStore
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
+from obsess.evolution import EvolutionStore
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
 
 
 class RelationshipKind(str, Enum):
@@ -153,7 +153,7 @@ class RelationshipGraph:
         self._rels: dict[str, Relationship] = self._hydrate()
 
     def _hydrate(self) -> dict[str, Relationship]:
-        from engram.storage.serialize import relationship_from_dict  # lazy: avoids circular
+        from obsess.storage.serialize import relationship_from_dict  # lazy: avoids circular
         cache: dict[str, Relationship] = {}
         for data in self._storage.all(_RELATIONSHIPS_COLLECTION):
             r = relationship_from_dict(data)
@@ -167,7 +167,7 @@ class RelationshipGraph:
         to_agent_id: str,
         metadata: Optional[dict] = None,
     ) -> Relationship:
-        from engram.storage.serialize import relationship_to_dict
+        from obsess.storage.serialize import relationship_to_dict
         if from_agent_id == to_agent_id:
             raise ValueError("A relationship cannot have the same agent on both ends")
         rel = Relationship(

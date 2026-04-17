@@ -4,7 +4,7 @@ import json
 import unittest
 from typing import Optional
 
-from engram.llm import ProviderSemantics
+from obsess.llm import ProviderSemantics
 
 
 class FakeProvider:

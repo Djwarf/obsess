@@ -3,8 +3,8 @@ from __future__ import annotations
 import time
 import unittest
 
-from engram.population import Population
-from engram.types import SeedType
+from obsess.population import Population
+from obsess.types import SeedType
 
 
 class SharedObsessionContract(unittest.TestCase):

@@ -3,16 +3,16 @@ from __future__ import annotations
 import os
 import unittest
 
-MODEL_PATH = os.environ.get("ENGRAM_GGUF_PATH")
+MODEL_PATH = os.environ.get("OBSESS_GGUF_PATH")
 
 
 @unittest.skipIf(
     not MODEL_PATH,
-    "ENGRAM_GGUF_PATH not set — skipping LlamaCppProvider integration test",
+    "OBSESS_GGUF_PATH not set — skipping LlamaCppProvider integration test",
 )
 class LlamaCppProviderIntegration(unittest.TestCase):
     """End-to-end integration test for the real local-LLM path:
-    LlamaCppProvider → ProviderSemantics → LLM interface engram consumes.
+    LlamaCppProvider → ProviderSemantics → LLM interface obsess consumes.
 
     Verifies shape contracts (float in [0, 1], bool, non-empty strings), not
     judgment quality. Quality depends on the model; any instruction-tuned GGUF
@@ -20,8 +20,8 @@ class LlamaCppProviderIntegration(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        from engram.llm import ProviderSemantics
-        from engram.providers.llamacpp import LlamaCppProvider
+        from obsess.llm import ProviderSemantics
+        from obsess.providers.llamacpp import LlamaCppProvider
         provider = LlamaCppProvider(model_path=MODEL_PATH, n_gpu_layers=0, verbose=False)
         cls.llm = ProviderSemantics(provider)
 

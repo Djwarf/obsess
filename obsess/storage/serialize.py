@@ -2,10 +2,10 @@ from __future__ import annotations
 
 from typing import Optional
 
-from engram.pools import Pool
-from engram.relationships import Relationship, RelationshipKind, SharingMode
-from engram.shares import TraumaShare
-from engram.types import (
+from obsess.pools import Pool
+from obsess.relationships import Relationship, RelationshipKind, SharingMode
+from obsess.shares import TraumaShare
+from obsess.types import (
     Impression,
     ObsessionActivation,
     ObsessionDefinition,

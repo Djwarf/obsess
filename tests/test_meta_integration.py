@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import unittest
 
-from engram.creator import ObsessionSpec
-from engram.population import Population
-from engram.relationships import RelationshipKind
-from engram.types import SeedType
+from obsess.creator import ObsessionSpec
+from obsess.population import Population
+from obsess.relationships import RelationshipKind
+from obsess.types import SeedType
 
 
 class MetaLayerIntegration(unittest.TestCase):

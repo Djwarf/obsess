@@ -4,12 +4,12 @@ import os
 import tempfile
 import unittest
 
-from engram.creator import ObsessionSpec
-from engram.population import Population
-from engram.relationships import RelationshipKind
-from engram.storage.memory import InMemoryStorage
-from engram.storage.sqlite import SQLiteStorage
-from engram.types import SeedType
+from obsess.creator import ObsessionSpec
+from obsess.population import Population
+from obsess.relationships import RelationshipKind
+from obsess.storage.memory import InMemoryStorage
+from obsess.storage.sqlite import SQLiteStorage
+from obsess.types import SeedType
 
 
 class StorageBackendContract(unittest.TestCase):
@@ -61,7 +61,7 @@ class SqlitePersistenceAcrossSessions(unittest.TestCase):
 
     def test_end_to_end_roundtrip(self):
         with tempfile.TemporaryDirectory() as td:
-            path = os.path.join(td, "engram.db")
+            path = os.path.join(td, "obsess.db")
 
             # --- Session 1: build state ---
             pop = Population.new(storage=SQLiteStorage(path))

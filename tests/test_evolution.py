@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from engram.evolution import EvolutionStore
-from engram.population import Population
-from engram.types import SeedType
+from obsess.evolution import EvolutionStore
+from obsess.population import Population
+from obsess.types import SeedType
 
 
 class EvolutionStoreSmoke(unittest.TestCase):

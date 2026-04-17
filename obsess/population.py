@@ -4,26 +4,26 @@ import random
 from dataclasses import dataclass, field
 from typing import Optional
 
-from engram.bonding import Bonding
-from engram.creator import Creator, CreatorPolicy
-from engram.embed import Embedder, HashEmbedder
-from engram.evolution import EvolutionStore
-from engram.llm import LLM
-from engram.memory import Memory
-from engram.pools import PoolRegistry
-from engram.relationships import (
+from obsess.bonding import Bonding
+from obsess.creator import Creator, CreatorPolicy
+from obsess.embed import Embedder, HashEmbedder
+from obsess.evolution import EvolutionStore
+from obsess.llm import LLM
+from obsess.memory import Memory
+from obsess.pools import PoolRegistry
+from obsess.relationships import (
     KIND_META,
     Relationship,
     RelationshipGraph,
     RelationshipKind,
     SharingMode,
 )
-from engram.selection import Selection
-from engram.shared import SharedObsessions
-from engram.shares import TraumaShares
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
-from engram.store import TraumaStore
+from obsess.selection import Selection
+from obsess.shared import SharedObsessions
+from obsess.shares import TraumaShares
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
+from obsess.store import TraumaStore
 
 
 _DEFAULT_ATTENUATION: dict[RelationshipKind, float] = {
@@ -34,7 +34,7 @@ _DEFAULT_ATTENUATION: dict[RelationshipKind, float] = {
 
 @dataclass
 class Population:
-    """One engram installation = one Population. Storage-backed: pass any
+    """One obsess installation = one Population. Storage-backed: pass any
     Storage implementation (InMemoryStorage, SQLiteStorage, or your own) and
     every store in the population persists to it. When constructing on an
     existing SQLite file, shared stores automatically hydrate; per-agent

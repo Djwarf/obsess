@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from engram.population import Population
-from engram.relationships import RelationshipKind, SharingMode
-from engram.types import AccessMode, SeedType
+from obsess.population import Population
+from obsess.relationships import RelationshipKind, SharingMode
+from obsess.types import AccessMode, SeedType
 
 
 class TraumaPropagationContract(unittest.TestCase):

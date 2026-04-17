@@ -4,12 +4,12 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import TYPE_CHECKING, Optional
 
-from engram.llm import LLM
-from engram.memory import Memory
-from engram.types import Obsession, SeedType
+from obsess.llm import LLM
+from obsess.memory import Memory
+from obsess.types import Obsession, SeedType
 
 if TYPE_CHECKING:
-    from engram.population import Population
+    from obsess.population import Population
 
 
 class CreatorPolicy(str, Enum):

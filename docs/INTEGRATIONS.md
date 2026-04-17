@@ -1,6 +1,6 @@
-# Integrating engram with agent frameworks
+# Integrating obsess with agent frameworks
 
-engram is framework-neutral — it owns memory state, your framework owns the reasoning loop. This doc shows how to plug engram into common setups.
+obsess is framework-neutral — it owns memory state, your framework owns the reasoning loop. This doc shows how to plug obsess into common setups.
 
 The core pattern is a **sandwich** around each LLM call:
 
@@ -17,15 +17,15 @@ observation ──▶ agent.ingest(observation) ──▶ trauma_warnings
                     agent.record_failure(...) ◀── if failure detected
 ```
 
-engram does not wrap or replace your agent framework. It runs alongside.
+obsess does not wrap or replace your agent framework. It runs alongside.
 
 ---
 
 ## Framework-neutral pattern
 
 ```python
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 
 pop = Population.new()
 agent = pop.spawn("my_bot")
@@ -38,12 +38,12 @@ agent.seed_obsession(
 )
 
 def reason(user_message: str) -> str:
-    # 1. Feed the observation to engram. This updates the agent's state and
+    # 1. Feed the observation to obsess. This updates the agent's state and
     #    returns any trauma warnings that fire in this context.
     ingest = agent.ingest(user_message)
     warnings = [st.rendered_text for st in ingest.trauma_warnings]
 
-    # 2. Augment the prompt with engram's memory output.
+    # 2. Augment the prompt with obsess's memory output.
     memory_context = ""
     if warnings:
         memory_context += "Past failure warnings:\n" + "\n".join(f"- {w}" for w in warnings)
@@ -74,11 +74,11 @@ def reason(user_message: str) -> str:
 
 ## LangChain
 
-Wrap your existing LangChain chain/agent with engram ingest/record_failure hooks. engram state lives next to, not inside, the LangChain chain.
+Wrap your existing LangChain chain/agent with obsess ingest/record_failure hooks. obsess state lives next to, not inside, the LangChain chain.
 
 ```python
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 from langchain_core.messages import HumanMessage
 from langchain_anthropic import ChatAnthropic
 
@@ -117,12 +117,12 @@ Failures in one node's execution propagate as warnings to related nodes on subse
 
 ## Claude Agent SDK
 
-Give each Claude-Code-style subagent a dedicated engram `Memory`. Hook engram into the SDK's lifecycle: ingest the incoming task, query for relevant past work, record failure on tool errors.
+Give each Claude-Code-style subagent a dedicated obsess `Memory`. Hook obsess into the SDK's lifecycle: ingest the incoming task, query for relevant past work, record failure on tool errors.
 
 ```python
 from anthropic import Anthropic
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 
 client = Anthropic()
 pop = Population.new()
@@ -141,7 +141,7 @@ test_writer = make_agent("tester", "test_coverage", "unit integration tests edge
 
 # Peer relationship — they work alongside but don't inherit each other's obsessions.
 # Warning-share trauma would require explicit sharing (peer default is NONE).
-from engram.relationships import RelationshipKind
+from obsess.relationships import RelationshipKind
 pop.form_relationship(RelationshipKind.PEER, "reviewer", "tester")
 
 def run_reviewer(task: str) -> str:
@@ -197,12 +197,12 @@ while not done:
 
 ## Persistence patterns
 
-For a long-running agent (chatbot, assistant, coding agent), back engram with SQLite so state survives restart:
+For a long-running agent (chatbot, assistant, coding agent), back obsess with SQLite so state survives restart:
 
 ```python
-from engram.storage.sqlite import SQLiteStorage
+from obsess.storage.sqlite import SQLiteStorage
 
-pop = Population.new(storage=SQLiteStorage("~/.my_app/engram.db"))
+pop = Population.new(storage=SQLiteStorage("~/.my_app/obsess.db"))
 
 # On first run:
 agent = pop.spawn("assistant")
@@ -245,5 +245,5 @@ Event kinds: `spawn`, `agent_proposed`, `agent_created`, `agent_refused`, `agent
 | Model a task-subordinate that inherits attenuated | `RelationshipKind.PARENT_CHILD` |
 | Two independent agents that should warn each other | `RelationshipKind.PEER` with explicit warning-share |
 | A team whose collective failures must propagate to everyone | `pop.bonding.teambuild(...)` — creates a pool |
-| An LLM-provider-agnostic agent | `ProviderSemantics(AnyProvider)` — same engram code either way |
+| An LLM-provider-agnostic agent | `ProviderSemantics(AnyProvider)` — same obsess code either way |
 | State that survives restart | `SQLiteStorage("path.db")` + `rehydrate_agent` |

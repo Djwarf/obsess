@@ -5,8 +5,8 @@ from typing import Optional, Protocol
 
 
 class Provider(Protocol):
-    """Minimal LLM primitive. Engram's semantic operations (scoring, impressions,
-    regeneration) live in engram.llm.ProviderSemantics; providers implement a
+    """Minimal LLM primitive. Obsess's semantic operations (scoring, impressions,
+    regeneration) live in obsess.llm.ProviderSemantics; providers implement a
     thin chat-completion primitive with optional JSON-schema-enforced output.
 
     Prompts and output parsing are provider-agnostic and live in Semantics.
@@ -39,32 +39,32 @@ def strip_thinking(text: str) -> str:
 
 
 # Re-export concrete providers so callers can do:
-#   from engram.providers import LlamaCppProvider, AnthropicProvider, ...
+#   from obsess.providers import LlamaCppProvider, AnthropicProvider, ...
 # Each import is wrapped in try/except so a missing optional SDK doesn't break
 # unrelated providers. If you instantiate a provider whose SDK isn't installed,
 # you'll get an ImportError at instantiation, not at module import.
 
 try:
-    from engram.providers.llamacpp import LlamaCppProvider  # noqa: F401
+    from obsess.providers.llamacpp import LlamaCppProvider  # noqa: F401
 except ImportError:
     pass
 
 try:
-    from engram.providers.ollama import OllamaProvider  # noqa: F401
+    from obsess.providers.ollama import OllamaProvider  # noqa: F401
 except ImportError:
     pass
 
 try:
-    from engram.providers.anthropic import AnthropicProvider  # noqa: F401
+    from obsess.providers.anthropic import AnthropicProvider  # noqa: F401
 except ImportError:
     pass
 
 try:
-    from engram.providers.openai_compat import OpenAICompatibleProvider  # noqa: F401
+    from obsess.providers.openai_compat import OpenAICompatibleProvider  # noqa: F401
 except ImportError:
     pass
 
 try:
-    from engram.providers.gemini import GeminiProvider  # noqa: F401
+    from obsess.providers.gemini import GeminiProvider  # noqa: F401
 except ImportError:
     pass

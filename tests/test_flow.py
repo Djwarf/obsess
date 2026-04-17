@@ -2,11 +2,11 @@ from __future__ import annotations
 
 import unittest
 
-from engram.population import Population
-from engram.types import SeedType
+from obsess.population import Population
+from obsess.types import SeedType
 
 
-class EngramFlow(unittest.TestCase):
+class ObsessFlow(unittest.TestCase):
     def setUp(self):
         self.pop = Population.new()
         self.mem = self.pop.spawn(agent_id="test_agent")

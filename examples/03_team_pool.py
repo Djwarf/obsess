@@ -9,8 +9,8 @@ Shows:
 Run: python examples/03_team_pool.py
 """
 
-from engram import Population
-from engram.types import SeedType
+from obsess import Population
+from obsess.types import SeedType
 
 
 def main() -> None:

@@ -1,12 +1,12 @@
 from __future__ import annotations
 
-from engram.llm import LLM
-from engram.obsessions import ObsessionRegistry
-from engram.pools import PoolRegistry
-from engram.relationships import SharingMode
-from engram.shares import TraumaShares
-from engram.store import TraumaStore
-from engram.types import AccessMode, Obsession, SeedType, SurfacedTrauma, Trauma
+from obsess.llm import LLM
+from obsess.obsessions import ObsessionRegistry
+from obsess.pools import PoolRegistry
+from obsess.relationships import SharingMode
+from obsess.shares import TraumaShares
+from obsess.store import TraumaStore
+from obsess.types import AccessMode, Obsession, SeedType, SurfacedTrauma, Trauma
 
 
 TRAUMA_TRIGGER_THRESHOLD = 0.15

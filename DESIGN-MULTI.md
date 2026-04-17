@@ -1,14 +1,14 @@
-# engram — multi-agent architecture
+# obsess — multi-agent architecture
 
 ## What this document adds
 
-`DESIGN.md` specifies the per-agent architecture — a single mind with utility-gated encoding, impressions, trauma, and obsessions. This document covers what changes when multiple agents share an engram installation: the relationships between them, how memory flows (or doesn't) across them, and the primitives for pooled memory that no individual agent owns.
+`DESIGN.md` specifies the per-agent architecture — a single mind with utility-gated encoding, impressions, trauma, and obsessions. This document covers what changes when multiple agents share an obsess installation: the relationships between them, how memory flows (or doesn't) across them, and the primitives for pooled memory that no individual agent owns.
 
 The per-agent architecture in `DESIGN.md` is unchanged. Everything here sits on top.
 
 ## Core thesis
 
-Standard multi-agent memory puts everything in one store and lets every agent read from it. That collapses the identity of individual agents into a shared fog. engram's claim is different: **agent relationships shape memory topology**. Siblings share differently than peers; a master and a prodigy share differently than parent and child; a team's failure is not any individual's failure.
+Standard multi-agent memory puts everything in one store and lets every agent read from it. That collapses the identity of individual agents into a shared fog. obsess's claim is different: **agent relationships shape memory topology**. Siblings share differently than peers; a master and a prodigy share differently than parent and child; a team's failure is not any individual's failure.
 
 The primitives:
 - **Ownership modes**: `private`, `shared-from-owner`, `pooled`.

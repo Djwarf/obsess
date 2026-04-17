@@ -5,10 +5,10 @@ import uuid
 from dataclasses import dataclass, field
 from typing import Optional
 
-from engram.evolution import EvolutionStore
-from engram.relationships import SharingMode
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
+from obsess.evolution import EvolutionStore
+from obsess.relationships import SharingMode
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
 
 
 _SHARES_COLLECTION = "trauma_shares"
@@ -43,7 +43,7 @@ class TraumaShares:
         self._cache: dict[str, TraumaShare] = self._hydrate()
 
     def _hydrate(self) -> dict[str, TraumaShare]:
-        from engram.storage.serialize import trauma_share_from_dict
+        from obsess.storage.serialize import trauma_share_from_dict
         cache: dict[str, TraumaShare] = {}
         for data in self._storage.all(_SHARES_COLLECTION):
             s = trauma_share_from_dict(data)
@@ -66,7 +66,7 @@ class TraumaShares:
             mode=mode,
             via_relationship_id=via_relationship_id,
         )
-        from engram.storage.serialize import trauma_share_to_dict
+        from obsess.storage.serialize import trauma_share_to_dict
         self._cache[share.id] = share
         self._storage.put(_SHARES_COLLECTION, share.id, trauma_share_to_dict(share))
         self._evolution.append(

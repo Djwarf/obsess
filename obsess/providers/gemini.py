@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Optional
 
-from engram.providers import strip_thinking
+from obsess.providers import strip_thinking
 
 
 class GeminiProvider:
@@ -11,7 +11,7 @@ class GeminiProvider:
 
     Structured output via response_mime_type="application/json" + response_schema.
     Gemini's schema format is close to JSON Schema but can be stricter about
-    certain constructs — if you hit schema-rejection errors, the engram
+    certain constructs — if you hit schema-rejection errors, the obsess
     Semantics layer's schemas are simple (flat objects with primitive fields),
     which Gemini accepts cleanly."""
 

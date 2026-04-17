@@ -3,10 +3,10 @@ from __future__ import annotations
 import random
 import unittest
 
-from engram.creator import ObsessionSpec
-from engram.population import Population
-from engram.relationships import RelationshipKind
-from engram.types import SeedType
+from obsess.creator import ObsessionSpec
+from obsess.population import Population
+from obsess.relationships import RelationshipKind
+from obsess.types import SeedType
 
 
 def _spec(domain: str, commitment: float = 0.7) -> ObsessionSpec:

@@ -2,20 +2,20 @@ from __future__ import annotations
 
 from typing import Optional
 
-from engram.embed import Embedder, HashEmbedder
-from engram.evolution import EvolutionStore
-from engram.ingest import Ingestor
-from engram.llm import LLM, MockLLM
-from engram.obsessions import ObsessionRegistry
-from engram.pools import Pool, PoolRegistry
-from engram.relationships import Relationship, RelationshipGraph, RelationshipKind, SharingMode
-from engram.retrieve import Retriever
-from engram.shared import SharedObsessions
-from engram.shares import TraumaShares
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
-from engram.store import ImpressionStore, TraumaStore
-from engram.types import IngestResult, Obsession, QueryResult, SeedType, Trauma
+from obsess.embed import Embedder, HashEmbedder
+from obsess.evolution import EvolutionStore
+from obsess.ingest import Ingestor
+from obsess.llm import LLM, MockLLM
+from obsess.obsessions import ObsessionRegistry
+from obsess.pools import Pool, PoolRegistry
+from obsess.relationships import Relationship, RelationshipGraph, RelationshipKind, SharingMode
+from obsess.retrieve import Retriever
+from obsess.shared import SharedObsessions
+from obsess.shares import TraumaShares
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
+from obsess.store import ImpressionStore, TraumaStore
+from obsess.types import IngestResult, Obsession, QueryResult, SeedType, Trauma
 
 
 class Memory:

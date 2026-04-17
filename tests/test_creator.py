@@ -2,14 +2,14 @@ from __future__ import annotations
 
 import unittest
 
-from engram.creator import (
+from obsess.creator import (
     CreatorPolicy,
     CreatorResult,
     FailureRegistryMatch,
     ObsessionSpec,
 )
-from engram.population import Population
-from engram.types import SeedType
+from obsess.population import Population
+from obsess.types import SeedType
 
 
 class CreatorContract(unittest.TestCase):

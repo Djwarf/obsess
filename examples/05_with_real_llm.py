@@ -1,52 +1,52 @@
-"""engram with a real LLM via the provider layer.
+"""obsess with a real LLM via the provider layer.
 
 Shows:
 - Wiring a Provider (Anthropic, OpenAI-compatible, Gemini, local GGUF, Ollama)
   into the semantic layer via ProviderSemantics.
-- Same engram code regardless of provider — swap the Provider instance, the
+- Same obsess code regardless of provider — swap the Provider instance, the
   rest of the pipeline is identical.
 
-Provider selection is picked via the ENGRAM_PROVIDER environment variable,
+Provider selection is picked via the OBSESS_PROVIDER environment variable,
 or falls back to MockLLM. See below for each provider's env vars.
 
 Run:
     # Anthropic:
-    ENGRAM_PROVIDER=anthropic ANTHROPIC_API_KEY=... python examples/05_with_real_llm.py
+    OBSESS_PROVIDER=anthropic ANTHROPIC_API_KEY=... python examples/05_with_real_llm.py
     # OpenAI:
-    ENGRAM_PROVIDER=openai OPENAI_API_KEY=... python examples/05_with_real_llm.py
+    OBSESS_PROVIDER=openai OPENAI_API_KEY=... python examples/05_with_real_llm.py
     # Local GGUF:
-    ENGRAM_PROVIDER=llamacpp ENGRAM_GGUF_PATH=/path/to/model.gguf python examples/05_with_real_llm.py
+    OBSESS_PROVIDER=llamacpp OBSESS_GGUF_PATH=/path/to/model.gguf python examples/05_with_real_llm.py
     # Ollama (running daemon):
-    ENGRAM_PROVIDER=ollama ENGRAM_OLLAMA_MODEL=qwen3:4b python examples/05_with_real_llm.py
+    OBSESS_PROVIDER=ollama OBSESS_OLLAMA_MODEL=qwen3:4b python examples/05_with_real_llm.py
     # Gemini:
-    ENGRAM_PROVIDER=gemini GOOGLE_API_KEY=... python examples/05_with_real_llm.py
+    OBSESS_PROVIDER=gemini GOOGLE_API_KEY=... python examples/05_with_real_llm.py
 """
 
 import os
 
-from engram import Population, ProviderSemantics
-from engram.llm import LLM, MockLLM
-from engram.types import SeedType
+from obsess import Population, ProviderSemantics
+from obsess.llm import LLM, MockLLM
+from obsess.types import SeedType
 
 
 def pick_llm() -> LLM:
-    choice = os.environ.get("ENGRAM_PROVIDER", "mock").lower()
+    choice = os.environ.get("OBSESS_PROVIDER", "mock").lower()
     if choice == "anthropic":
-        from engram.providers import AnthropicProvider
+        from obsess.providers import AnthropicProvider
         return ProviderSemantics(AnthropicProvider(model="claude-sonnet-4-6"))
     if choice == "openai":
-        from engram.providers import OpenAICompatibleProvider
+        from obsess.providers import OpenAICompatibleProvider
         return ProviderSemantics(OpenAICompatibleProvider(model="gpt-5"))
     if choice == "llamacpp":
-        from engram.providers import LlamaCppProvider
-        path = os.environ["ENGRAM_GGUF_PATH"]
+        from obsess.providers import LlamaCppProvider
+        path = os.environ["OBSESS_GGUF_PATH"]
         return ProviderSemantics(LlamaCppProvider(path, verbose=False))
     if choice == "ollama":
-        from engram.providers import OllamaProvider
-        model = os.environ.get("ENGRAM_OLLAMA_MODEL", "qwen3:4b")
+        from obsess.providers import OllamaProvider
+        model = os.environ.get("OBSESS_OLLAMA_MODEL", "qwen3:4b")
         return ProviderSemantics(OllamaProvider(model=model))
     if choice == "gemini":
-        from engram.providers import GeminiProvider
+        from obsess.providers import GeminiProvider
         return ProviderSemantics(GeminiProvider(model="gemini-2.5-flash"))
     return MockLLM()
 

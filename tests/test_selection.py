@@ -2,9 +2,9 @@ from __future__ import annotations
 
 import unittest
 
-from engram.creator import ObsessionSpec
-from engram.population import Population
-from engram.types import SeedType
+from obsess.creator import ObsessionSpec
+from obsess.population import Population
+from obsess.types import SeedType
 
 
 def _spec(domain: str) -> ObsessionSpec:

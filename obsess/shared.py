@@ -3,15 +3,15 @@ from __future__ import annotations
 import uuid
 from typing import Optional
 
-from engram.embed import Embedder
-from engram.evolution import EvolutionStore
-from engram.storage import Storage
-from engram.storage.memory import InMemoryStorage
-from engram.storage.serialize import (
+from obsess.embed import Embedder
+from obsess.evolution import EvolutionStore
+from obsess.storage import Storage
+from obsess.storage.memory import InMemoryStorage
+from obsess.storage.serialize import (
     obsession_def_from_dict,
     obsession_def_to_dict,
 )
-from engram.types import ObsessionDefinition
+from obsess.types import ObsessionDefinition
 
 
 _SHARED_DEFS_COLLECTION = "shared_obsession_definitions"

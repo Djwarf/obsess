@@ -3,11 +3,11 @@ from __future__ import annotations
 import json
 from typing import Protocol
 
-from engram.providers import Provider
+from obsess.providers import Provider
 
 
 class LLM(Protocol):
-    """Semantic interface engram consumes. Implementations either (a) implement
+    """Semantic interface obsess consumes. Implementations either (a) implement
     the semantics directly (MockLLM), or (b) wrap a provider-agnostic Provider
     and share a single set of prompts and output schemas (ProviderSemantics)."""
 
@@ -96,14 +96,14 @@ def _float_list_schema(n: int) -> dict:
 
 
 class ProviderSemantics:
-    """Provider-agnostic engram semantics. Wraps any Provider (LlamaCpp, Ollama,
+    """Provider-agnostic obsess semantics. Wraps any Provider (LlamaCpp, Ollama,
     Anthropic, OpenAI-compatible, Gemini, ...) and implements the LLM interface
-    engram consumes. Prompts and output parsing live here, in one place, so
+    obsess consumes. Prompts and output parsing live here, in one place, so
     swapping providers does not change what the model is asked.
 
     Parse failures (bad JSON, missing field, wrong type) are caught and return
     conservative defaults (0.0 for scores, False for detection) rather than
-    propagating exceptions. This matches the engram philosophy of being honest
+    propagating exceptions. This matches the obsess philosophy of being honest
     about what the system holds — a failed parse is 'no signal', not a crash."""
 
     def __init__(self, provider: Provider):
