@@ -36,7 +36,7 @@ llamacpp = ["llama-cpp-python>=0.3.0"]
 ollama = ["ollama>=0.3.0"]
 anthropic = ["anthropic>=0.40"]
 openai = ["openai>=1.50"]
-gemini = ["google-generativeai>=0.8"]
+gemini = ["google-genai>=1.0"]
 
 # Convenience bundles
 all-providers = [
@@ -44,7 +44,7 @@ all-providers = [
     "ollama>=0.3.0",
     "anthropic>=0.40",
     "openai>=1.50",
-    "google-generativeai>=0.8",
+    "google-genai>=1.0",
 ]
 all = [
     "sentence-transformers>=2.7",
@@ -53,7 +53,7 @@ all = [
     "ollama>=0.3.0",
     "anthropic>=0.40",
     "openai>=1.50",
-    "google-generativeai>=0.8",
+    "google-genai>=1.0",
 ]
 
 [project.urls]
